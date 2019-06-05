@@ -296,7 +296,7 @@ app.get('/addStoreProduct', addStoreProductView)
 app.post('/addStoreProduct', addStoreProduct)
 app.get('/changeProducts', changeStoreProduct)
 app.get('/generateInvoice', generateInvoice)
-var port_number = server.listen(process.env.ROOT_URL || 3000);
+var port_number = server.listen(process.env.PORT || 3000);
 //app.listen(port_number);
 app.listen(port_number, () => {
   console.log(`App listening on port ${port_number`);
