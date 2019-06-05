@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt')
+//const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
@@ -19,13 +19,13 @@ const UserSchema = new mongoose.Schema({
   },
 })
 
-UserSchema.pre('save', function(next){
-	const user=this
+// UserSchema.pre('save', function(next){
+// 	const user=this
   
-	bcrypt.hash(user.password,10,function(error,encrypted){
-		user.password=encrypted
-		next()
-	})
-})
+// 	// bcrypt.hash(user.password,10,function(error,encrypted){
+// 	// 	user.password=encrypted
+// 	// 	next()
+// 	// })
+// })
 
 module.exports = mongoose.model('User', UserSchema)
