@@ -1,0 +1,62 @@
+@layout('layouts.app')
+
+
+
+
+@section('content')
+<style>
+	body {
+		margin: 0px;
+	}
+
+	.containerOffer {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		
+	}
+
+	h2 {
+		font-family: fantasy;
+		font-size: 3em;
+		border-bottom: 2px solid pink;
+		border-right: 2px solid pink;
+		width: 400px;
+		text-align: center;
+		-moz-box-shadow:4px 4px 5px #888888;
+		-ms-box-shadow: 4px 4px 5px #888888;
+		-webkit-box-shadow: 4px 4px 5px #888888;
+		-o-box-shadow: 4px 4px 5px #888888;
+		box-shadow: 4px 4px 5px #888888;
+		margin-top: 10px;
+	}
+
+	.con{
+		width: 500px;
+		height: 500px;
+		
+	}
+	.offerImg {
+		width: 400px;
+		height: 400px;
+		margin: 10px;
+		border:2px solid black;
+		padding : 5px;
+		transition: all 1s;
+	}
+
+	img:hover {
+		transform: scale(1.1);
+	}
+</style><br>
+<h2>New Offers</h2>
+	<div class="containerOffer">
+		@each(o in offers)
+		<div class="con">
+		<img class="offerImg" src="{{o.image}}" alt=" " ></a>
+		<h4>Posted on : {{o.createdAt.toDateString()}}</h4>
+		</div>
+		@endeach
+	</div>
+
+@endsection

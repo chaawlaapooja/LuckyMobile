@@ -1,0 +1,142 @@
+@layout('layouts.app')
+
+@section('content')
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+	<!-- banner -->
+	<div class="banner banner10" style="background-image: url('posts/home/bannerImage.jpg');>
+		<div class="container">
+			<h2 style="color:white; text-align:center; ">About Us</h2>
+		</div>
+	</div>
+	<!-- //banner -->   
+	<!-- breadcrumbs -->
+	<div class="breadcrumb_dress">
+		<div class="container">
+			<ul>
+				<li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>
+				<li>About Us</li>
+			</ul>
+		</div>
+	</div>
+	<!-- //breadcrumbs --> 
+	<!-- about -->
+	<div class="about">
+		<div class="container">	
+			<div class="w3ls_about_grids">
+				<div class="col-md-6 w3ls_about_grid_left">
+					<h3>Heartily welcome to the LUCKY MOBILE!</h3><hr><br>
+					<p>It is our soulful responsibilty to deliver the best quality products at the most premium range with the adds on of our best high end services. We ensure that our services meet your requirements and our products meet your needs. We ensure to provide the best suited mobile phones and accessories from our widest range of brands according to your needs and requirements.</p>
+
+					<div class="col-xs-2 w3ls_about_grid_left1">
+						<a href="https://www.google.co.in/maps/place/Lucky+Mobile+shop/@16.8529224,74.5641821,15z/data=!4m8!1m2!2m1!1slucky+mobile+sangli!3m4!1s0x3bc1184724e90a6f:0x1ff3c308e86fdd60!8m2!3d16.8602003!4d74.5629263" target="_blank" class="google"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"> </span></a>
+					</div>
+					<div class="col-xs-10 w3ls_about_grid_left2">
+						<p><br>Reach out to us at : <a href="https://www.google.co.in/maps/place/Lucky+Mobile+shop/@16.8529224,74.5641821,15z/data=!4m8!1m2!2m1!1slucky+mobile+sangli!3m4!1s0x3bc1184724e90a6f:0x1ff3c308e86fdd60!8m2!3d16.8602003!4d74.5629263" target="_blank" class="google"><strong>Lucky Mobile, Harbhat road, Near Chandan Steel Center, Sangli City.</strong></a></p>
+					</div>
+					<div class="clearfix"> </div>
+
+					<div class="col-xs-2 w3ls_about_grid_left1">
+						<a href="mailto:luckymobile903@gmail.com"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-xs-10 w3ls_about_grid_left2">
+						<p><br>Mail us on <a href="mailto:luckymobile903@gmail.com"><strong>luckymobile903@gmail.com</strong></a></p>
+					</div>
+					<div class="clearfix"> </div>
+
+					<div class="col-xs-2 w3ls_about_grid_left1">
+						<a href="tel:+918600165860"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-xs-10 w3ls_about_grid_left2">
+						<p><br>Call us on <a href="tel:+918600165860"><strong>+91860016580</strong>.</a></p>
+					</div>
+					<div class="clearfix"> </div>
+					
+					<div class="col-xs-2 w3ls_about_grid_left1">
+						<a href="https://www.facebook.com/Lucky-Mobile-286546265152987/" target="_blank"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-xs-10 w3ls_about_grid_left2">
+						<p>Follow us on <a href="https://www.facebook.com/Lucky-Mobile-286546265152987/" target="_blank"><strong>facebook</strong></a> for latest updates and offers.</p>
+					</div>
+					<div class="clearfix"> </div>
+
+					<div class="col-xs-2 w3ls_about_grid_left1">
+						<a href="https://www.instagram.com/mobilelucky/" target="_blank"><span class="fa fa-instagram" aria-hidden="true"></span></a>
+					</div>
+					<div class="col-xs-10 w3ls_about_grid_left2">
+						<p>Follow us on <a href="https://www.instagram.com/mobilelucky/" target="_blank"><strong>instagram</strong></a> for latest updates and offers.</p>
+					</div>
+					<div class="clearfix"> </div>
+
+
+
+				</div>
+
+				<div class="col-md-6 w3ls_about_grid_right">
+					<img src="images/cover1.jpg" alt=" " class="img-responsive" />
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!-- //about --> 
+	
+	<!--Events-->
+
+	<div class="top-brands">
+		<div class="container">
+			<h3>Top Brands</h3>
+			<div class="sliderfig">
+				
+				<ul id="flexiselDemo1">	
+					@each(b in brands)	
+					<li>
+						<img src="{{b.image}}" alt={{b.name}} class="img-responsive" />
+					</li>
+					@endeach
+				</ul>
+			</div>
+			<script type="text/javascript">
+					$(window).load(function() {
+						$("#flexiselDemo1").flexisel({
+							visibleItems: 4,
+							animationSpeed: 1000,
+							autoPlay: true,
+							autoPlaySpeed: 3000,    		
+							pauseOnHover: true,
+							enableResponsiveBreakpoints: true,
+							responsiveBreakpoints: { 
+								portrait: { 
+									changePoint:480,
+									visibleItems: 1
+								}, 
+								landscape: { 
+									changePoint:640,
+									visibleItems:2
+								},
+								tablet: { 
+									changePoint:768,
+									visibleItems: 3
+								}
+							}
+						});
+						
+					});
+			</script>
+			<script type="text/javascript" src="js/jquery.flexisel.js"></script>
+		</div>
+	</div>
+	<!--//Events-->
+
+
+	<!-- team-bottom -->
+	<div class="team-bottom">
+		<div class="container">
+			<h3>Are You Ready For Deals? Flat <span>{{dis}}% Offer </span>on Mobiles</h3>
+			<h5>Our cutsomers are satisfied with the services we provide. Get the best offers at the most premium range. Delivering the best service.</h5><br/>
+			<a href="/productsPage">Shop Now</a>
+		</div>
+	</div>
+	<!-- //team-bottom -->
+@endsection

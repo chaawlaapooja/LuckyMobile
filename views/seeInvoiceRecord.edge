@@ -1,0 +1,319 @@
+@layout('layouts.app')
+
+@section('content')
+<div class="sidenav">
+            <li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-0"><i class="fa fa-fw fa-pencil"></i>Website Editing<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-0">
+                    <li style="padding-left:12px"><a href="/editHome"><i class="fa fa-fw fa-home"></i>Edit Home</a></li>
+                    <li style="padding-left:12px"><a href="/editProducts"><i class="fa fa-fw fa-cube"></i>Edit Products</a></li>
+                    <li style="padding-left:12px"><a href="/editOffers"><i class="fa fa-fw fa-gift"></i>Edit Offers</a></li>
+                </ul>
+            </li>
+            <li style="list-style:none">
+                <a href="/onlineOrders"><i class="fa fa-fw fa-pencil"></i>Online orders<i class="fa fa-fw fa-angle-down"></i></a>
+            </li>
+            <li style="list-style:none">
+                <a href="/changeSectionAndPayment"><i class="fa fa-fw fa-pencil"></i>Edit Section & Payment<i class="fa fa-fw fa-angle-down"></i></a>
+            </li>
+            <li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-pencil"></i>Store Products<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-2">
+                    <li style="padding-left:12px"><a href="/addStoreProduct"><i class="fa fa-fw fa-plus"></i>Add Product</a></li>
+                    <li style="padding-left:12px"><a href="/changeProducts"><i class="fa fa-fw fa-times"></i>Edit/Delete Product</a></li>
+                </ul>
+            </li>
+            <li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-credit-card"></i>Invoice<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-1">
+                    <li style="padding-left:12px"><a href="/generateInvoice"><i class="fa fa-fw fa-calculator"></i>Generate Invoice</a></li>
+                    <li style="padding-left:12px"><a href="/seeInvoiceRecord"><i class="fa fa-fw fa-user"></i>See Invoice Record</a></li>
+                </ul>
+            </li>
+            <li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-fw fa-bar-chart"></i>Reports<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-3">
+                    <li style="padding-left:12px"><a href="/invoiceReport"><i class="fa fa-fw fa-calendar"></i>Invoice Report</a></li>
+                    <li style="padding-left:12px"><a href="/saleReport"><i class="fa 
+                    fa-fw fa-bar-chart"></i>Sales Report</a></li>
+                    <li style="padding-left:12px"><a href="/productsReport"><i class="fa fa-fw fa-product-hunt"></i>Products-Sale Report</a></li>
+                    <li style="padding-left:12px"><a href="/topProductsReport"><i class="fa fa-fw fa-sort-numeric-desc"></i>Top Products Report</a></li>
+                    <li style="padding-left:12px"><a href="/stockReport"><i class="fa fa-fw fa-tasks"></i>Stock Report</a></li>
+                </ul>
+            </li>
+</div>
+
+<div style="padding-left:30%; padding-right:2%">
+<br>
+<h2>Welcome  {{authname}}</h2><hr>
+<h4>See Invoice Record here!</h4><br>
+
+
+            <div class="form-group" style="width:100%; padding-left:5%">
+            <label>Enter Invoice Number :</label>
+            <input type="number" style="width:80%" class="form-control invoiceNumber" placeholder="ENTER INVOICE NUMBER" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." onKeyUp="onInvoiceChange()" required>
+            </div>
+            
+            <span style="padding-left:5%"><input type="submit" onclick="onSubmit()" class="btn btn-success" value="SEE"/></span>
+
+            <span style="padding-left:5%"><input type="submit" style="background-color:#ff5063; color:white" class="printBtn" onclick="printJS({ printable: 'printJS-form', type: 'html',modalMessage: 'Retrieving Document...',targetStyles: ['*'] })" class="btn btn-success" value="PRINT" hidden/></span>
+            <br/><br/>
+
+            <div id="printJS-form" class="bill" style="border: 2px solid black;
+    padding: 1%;" hidden="true">
+<img src="posts/shop_header.jpg" class="img-responsive"/>
+<div style="padding:1%">
+<h3 style="text-align:center"><em><strong>Best in quality, Best in service</strong></em></h3>
+</div>
+
+<div>
+<span>
+<label>GST:27FVMPK6443K1ZX</label>
+</span>
+<span class="pull-right">
+<label>State Code : </label><span style="padding-left:10px"><label>27</label></span>
+</span>
+</div>
+
+<div style="text-align:center"><span><strong>TAX INVOICE</strong></span></div>
+<hr>
+
+<div>
+<span>
+<label>Invoice Number : </label><span style="padding:1%"><label id="invoiceNumber"></label></span>
+</span>
+<span style="padding-left:15%; padding-right:15%"><label>Payment Mode :</label><span style="padding:1%"><label id="paymentMode"></label></span>
+<span class="pull-right">
+<label>Date : </label><span style="padding-left:10px"><label id="invoiceDateBill"/></span>
+</span>
+</div>
+<div>
+<span>
+<label>Customer name : </label><span style="padding:1%"><label id="customerName"/></span>
+</span>
+<span class="pull-right">
+<label>Mobile : </label><span style="padding-left:10px"><label id="mobile"/></span>
+</span>
+</div>
+<hr>
+<div>
+<table class="table table-bordered" id="myTable">
+
+<tr>
+<th>Sr.no</th>
+<th>Particulars</th>
+<th>Quantity</th>
+<th>Rate</th>
+<th>Amount</th>
+</tr>
+
+<tbody>
+
+</tbody>
+</table><br><br><br>
+<footer>
+<div>
+<span class="pull-left"><label>In Words : <span id="inWords" style="padding:1%"></span></label></span>
+
+<span class="pull-right"><label>Grand Total : <span id="totalSum" style="padding:1%"></span></label></span>
+<div>
+<br>
+<table class="table table-bordered">
+<tr>
+<th>Taxable amount</th>
+<th>CGST (6%)</th>
+<th>SGST (6%)</th>
+<th>Grand Total</th>
+<tr>
+<tr>
+<td id="taxableAmount"></td>
+<td id="cgst"></td>
+<td id="sgst"></td>
+<td id="grandTotal"></td>
+</tr>
+</table>
+<hr>
+<div>
+<span class="pull-left" style="width:70%">
+<h4>Certified that particulars given above are true and correct</h4>
+<br>
+<h4>Terms and conditions</h4>
+<ol>
+<li>Products one sold cannot be be returned or exhanged.</li>
+<li>No cash refunds are allowed.</li>
+<li>Subject to Sangli Jurisdiction.</li>
+</ol>
+</span>
+<span class="pull-right">
+<h4>FOR LUCKY MOBILE</h4>
+<br><br><br><br><br>
+<h5>Authorised Signature</h5>
+</span>
+</div>
+<img src="posts/shop_header_marathi.jpg" class="img-responsive"/>
+</footer>
+</div>
+
+</div>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</div>
+<script src="print.js"></script>
+
+<script>
+function onInvoiceChange(){
+	document.querySelector('#printJS-form').hidden=true
+	document.querySelector('.printBtn').hidden=true
+	let productRow = document.querySelectorAll('.productRow')
+	if(productRow!==null)
+	productRow.forEach(function(productRow){
+	productRow.remove()
+	})
+	
+}
+function onSubmit(){
+	let invoiceNumber = (document.querySelector('.invoiceNumber').value)
+	if(invoiceNumber.length===0)
+		window.alert('Please enter invoice number')
+	else{
+	fetch('checkInvoiceNumber', {
+		     method: 'POST',
+		     body: JSON.stringify({invoiceNumber}),
+		     headers: {
+		 	    'Content-Type': 'application/json'
+		 	},
+		 })
+		 .then(res => res.json())
+		 .then(res => {
+		 if(res==='NotFound'){
+		 	document.querySelector('#printJS-form').hidden=true
+		 	window.alert('No record found with invoice Number '+invoiceNumber)
+		 }
+		 else
+		 	{
+		 		let dt = res.invoiceDate.substring(0,10)
+		 		document.querySelector('.printBtn').hidden=false
+		 		document.querySelector('#printJS-form').hidden=false
+		 		document.querySelector('#invoiceNumber').innerHTML=res.invoiceNumber
+		 		document.querySelector('#invoiceDateBill').innerHTML=dt
+		 		document.querySelector('#paymentMode').innerHTML=res.paymentMode
+		 		document.querySelector('#customerName').innerHTML=res.customerName
+		 		document.querySelector('#mobile').innerHTML=res.customerMobile
+		 		let productRowNames = res.boughtProductsName
+		 		let productRowAmounts = res.boughtProductsPrice
+		 		for(var i=0; i<productRowNames.length; i++){
+		 			var table = document.getElementById("myTable");
+
+					var row = table.insertRow(-1);
+					row.className='productRow'
+
+					var cell1 = row.insertCell(0);
+					var cell2 = row.insertCell(1);
+					var cell3 = row.insertCell(2);
+					var cell4 = row.insertCell(3);
+					var cell5 = row.insertCell(4);
+
+					cell1.innerHTML = i+1
+					cell2.innerHTML = productRowNames[i];
+					cell2.className='particulars'
+					cell3.innerHTML=1
+					cell4.innerHTML = productRowAmounts[i]
+					cell5.innerHTML = productRowAmounts[i] 
+					cell5.className= 'amount'
+		 		}
+		 		let sum=res.grandTotal
+		 		document.querySelector('#totalSum').innerHTML=sum
+		 		let taxableAmount=sum-((12/100)*sum)
+				let gstAmount=((6/100)*sum)
+				document.querySelector('#taxableAmount').innerHTML=taxableAmount
+				document.querySelector('#cgst').innerHTML=gstAmount
+				document.querySelector('#sgst').innerHTML=gstAmount
+				document.querySelector('#grandTotal').innerHTML=sum
+				document.querySelector('#inWords').innerHTML=convertNumberToWords(sum)
+
+		 	}
+		 })
+	}
+}
+function convertNumberToWords(amount) {
+    var words = new Array();
+    words[0] = '';
+    words[1] = 'One';
+    words[2] = 'Two';
+    words[3] = 'Three';
+    words[4] = 'Four';
+    words[5] = 'Five';
+    words[6] = 'Six';
+    words[7] = 'Seven';
+    words[8] = 'Eight';
+    words[9] = 'Nine';
+    words[10] = 'Ten';
+    words[11] = 'Eleven';
+    words[12] = 'Twelve';
+    words[13] = 'Thirteen';
+    words[14] = 'Fourteen';
+    words[15] = 'Fifteen';
+    words[16] = 'Sixteen';
+    words[17] = 'Seventeen';
+    words[18] = 'Eighteen';
+    words[19] = 'Nineteen';
+    words[20] = 'Twenty';
+    words[30] = 'Thirty';
+    words[40] = 'Forty';
+    words[50] = 'Fifty';
+    words[60] = 'Sixty';
+    words[70] = 'Seventy';
+    words[80] = 'Eighty';
+    words[90] = 'Ninety';
+    amount = amount.toString();
+    var atemp = amount.split(".");
+    var number = atemp[0].split(",").join("");
+    var n_length = number.length;
+    var words_string = "";
+    if (n_length <= 9) {
+        var n_array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
+        var received_n_array = new Array();
+        for (var i = 0; i < n_length; i++) {
+            received_n_array[i] = number.substr(i, 1);
+        }
+        for (var i = 9 - n_length, j = 0; i < 9; i++, j++) {
+            n_array[i] = received_n_array[j];
+        }
+        for (var i = 0, j = 1; i < 9; i++, j++) {
+            if (i == 0 || i == 2 || i == 4 || i == 7) {
+                if (n_array[i] == 1) {
+                    n_array[j] = 10 + parseInt(n_array[j]);
+                    n_array[i] = 0;
+                }
+            }
+        }
+        value = "";
+        for (var i = 0; i < 9; i++) {
+            if (i == 0 || i == 2 || i == 4 || i == 7) {
+                value = n_array[i] * 10;
+            } else {
+                value = n_array[i];
+            }
+            if (value != 0) {
+                words_string += words[value] + " ";
+            }
+            if ((i == 1 && value != 0) || (i == 0 && value != 0 && n_array[i + 1] == 0)) {
+                words_string += "Crores ";
+            }
+            if ((i == 3 && value != 0) || (i == 2 && value != 0 && n_array[i + 1] == 0)) {
+                words_string += "Lakhs ";
+            }
+            if ((i == 5 && value != 0) || (i == 4 && value != 0 && n_array[i + 1] == 0)) {
+                words_string += "Thousand ";
+            }
+            if (i == 6 && value != 0 && (n_array[i + 1] != 0 && n_array[i + 2] != 0)) {
+                words_string += "Hundred and ";
+            } else if (i == 6 && value != 0) {
+                words_string += "Hundred ";
+            }
+        }
+        words_string = words_string.split("  ").join(" ")+' only.';
+    }
+    return words_string;
+}
+</script>
+@endsection

@@ -1,0 +1,68 @@
+@layout('layouts.app')
+@section('content')
+<div>
+<div class="container contact-form" style="background-image:url('https://ak7.picdn.net/shutterstock/videos/3176407/thumb/1.jpg'); width: 90%; padding-top:1%">
+            <div class="contact-image">
+                <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt=""/>
+            </div>
+            <form method="post" action="/getOrder">
+                <h3>Please fill in the details</h3>
+               <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" >
+                            <input type="text" name="name" pattern="[a-zA-Z].{2,}" title="Enter three or more characters" class="form-control" placeholder="Your Name *" onchange="getTotal()" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title='xxx@xxx.domain' class="form-control" placeholder="Your Email *" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" pattern="[0-9]{10}" name="phone" class="form-control" placeholder="Your Phone Number *"  required />
+                        </div>
+                        <div class="form-group" hidden>
+                            <input type="text" id="subtotal" name="subtotal" class="form-control"  />
+                        </div>
+                        <div class="form-group" hidden>
+                            <input type="text" id="items" name="itemsNames" class="form-control"/>
+                        </div>
+                        <div class="form-group" hidden>
+                            <input type="text" id="itemPrice" name="itemsPrices" class="form-control"/>
+                        </div>
+                        <div class="form-group" hidden>
+                            <input type="text" id="authid" name="auth" value={{authid}} class="form-control"/>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input name="address" id="address" class="form-control" placeholder="Shipping Address *" style="width: 100%; height: 150px;" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <input type="submit" style="width:40%; margin:2%" name="btnSubmit" class="btnContact" value="Proceed" required/>
+                        </div>
+                </div>
+            </form>
+</div>
+</div>
+<script>
+function getTotal(){
+	let val = document.querySelector('.sbmincart-subtotal').innerText
+	document.querySelector('#subtotal').value = val.trim().slice(10)
+	let ele = (document.querySelectorAll('.sbmincart-name'))
+    let qty = document.querySelectorAll('.sbmincart-quantity')
+	let itemArray = []
+	for(var i=0; i<ele.length; i++){
+		itemArray.push(ele[i].innerHTML+'('+qty[i].value+')')
+	}
+	document.querySelector('#items').value = itemArray
+	let prices = (document.querySelectorAll('.sbmincart-price'))
+	let itemPrices = []
+	for(var i=0; i<prices.length; i++){
+		itemPrices.push(prices[i].innerHTML)
+	}
+	document.querySelector('#itemPrice').value = itemPrices
+}
+
+</script>
+<!--Section: Contact v.2-->
+@endsection

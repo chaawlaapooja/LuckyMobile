@@ -1,0 +1,532 @@
+@layout('layouts.app')
+
+
+@section('content')
+	<!-- banner -->
+	<div class="banner" style="background-image: url('posts/home/bannerImage.jpg');">
+		<div class="container">
+			<h3>Lucky Mobile, <span>Special Offers</span></h3>
+		</div>
+	</div>
+	<!-- //banner --> 
+	<!-- banner-bottom -->
+	<div class="banner-bottom">
+		<div class="container">
+			<div class="col-md-5 wthree_banner_bottom_left">
+				<div class="video-img" style="background-image: url('posts/home/bannerBottomImage.jpg');">
+					
+				</div> 
+					<!-- pop-up-box -->     
+					<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+					<!--//pop-up-box -->
+					
+					<script>
+						$(document).ready(function() {
+						$('.popup-with-zoom-anim').magnificPopup({
+							type: 'inline',
+							fixedContentPos: false,
+							fixedBgPos: true,
+							overflowY: 'auto',
+							closeBtnInside: true,
+							preloader: false,
+							midClick: true,
+							removalDelay: 300,
+							mainClass: 'my-mfp-zoom-in'
+						});
+																						
+						});
+					</script>
+			</div>
+			<div class="col-md-7 wthree_banner_bottom_right">
+				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+					<ul id="myTab" class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home">RAM</a></li>
+						<li role="presentation"><a href="#audio" role="tab" id="audio-tab" data-toggle="tab" aria-controls="audio">Better Camera</a></li>
+						<li role="presentation"><a href="#video" role="tab" id="video-tab" data-toggle="tab" aria-controls="video">Longer Battery</a></li>
+						<li role="presentation"><a href="#tv" role="tab" id="tv-tab" data-toggle="tab" aria-controls="tv">Screen Size</a></li>
+						
+					</ul>
+					<div id="myTabContent" class="tab-content">
+						<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+							<div class="agile_ecommerce_tabs">
+								@each(rc in ramContent)
+								<div class="col-md-4 agile_ecommerce_tab_left">
+									<div class="hs-wrapper">
+										<img src={{rc.coverFile}} alt={{rc.model}} class="img-responsive" />
+										<img src={{rc.firstFile}} alt={{rc.model}} class="img-responsive" />
+										<img src={{rc.secondFile}} alt={{rc.model}} class="img-responsive" />
+										<img src={{rc.thirdFile}} alt={{rc.model}} class="img-responsive" />
+										<img src={{rc.fourthFile}} alt={{rc.model}} class="img-responsive" />
+										<img src={{rc.fifthFile}} alt={{rc.model}} class="img-responsive" />
+										<div class="w3_hs_bottom">
+											<ul>
+												<li>
+													<a href="#" data-toggle="modal" data-target="#myRAMModal{{rc.sr}}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+												</li>
+											</ul>
+										</div>
+									</div> 
+									<h5><a>{{rc.model}}</a></h5>
+									<div class="simpleCart_shelfItem">
+										<p><span>Rs.{{rc.marketPrice}}</span> <i class="item_price">Rs.{{rc.ourPrice}}</i></p>
+										<form action="#" method="post">
+											<input type="hidden" name="cmd" value="_cart" />
+											<input type="hidden" name="add" value="1" /> 
+											<input type="hidden" name="w3ls_item" value="{{rc.model}}" /> 
+											<input type="hidden" name="amount" value="{{rc.ourPrice}}" />   
+											<button type="submit" class="w3ls-cart">Add to cart</button>
+										</form>  
+									</div>
+								</div>
+								@endeach
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="audio" aria-labelledby="audio-tab">
+							<div class="agile_ecommerce_tabs">
+								@each(cc in cameraContent)
+								<div class="col-md-4 agile_ecommerce_tab_left">
+									<div class="hs-wrapper">
+										<img src={{cc.coverFile}} alt={{cc.model}} class="img-responsive" />
+										<img src={{cc.firstFile}} alt={{cc.model}} class="img-responsive" />
+										<img src={{cc.secondFile}} alt={{cc.model}} class="img-responsive" />
+										<img src={{cc.thirdFile}} alt={{cc.model}} class="img-responsive" />
+										<img src={{cc.fourthFile}} alt={{cc.model}} class="img-responsive" />
+										<img src={{cc.fifthFile}} alt={{cc.model}} class="img-responsive" />
+										<div class="w3_hs_bottom">
+											<ul>
+												<li>
+													<a href="#" data-toggle="modal" data-target="#myCameraModal{{cc.sr}}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+												</li>
+											</ul>
+										</div>
+									</div> 
+									<h5><a>{{cc.model}}</a></h5>
+									<div class="simpleCart_shelfItem">
+										<p><span>Rs.{{cc.marketPrice}}</span> <i class="item_price">Rs.{{cc.ourPrice}}</i></p>
+										<form action="#" method="post">
+											<input type="hidden" name="cmd" value="_cart" />
+											<input type="hidden" name="add" value="1" /> 
+											<input type="hidden" name="w3ls_item" value="{{cc.model}}" /> 
+											<input type="hidden" name="amount" value="{{cc.ourPrice}}" />   
+											<button type="submit" class="w3ls-cart">Add to cart</button>
+										</form>  
+									</div>
+								</div>
+								@endeach
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="video" aria-labelledby="video-tab">
+							<div class="agile_ecommerce_tabs">
+								@each(bc in batteryContent)
+								<div class="col-md-4 agile_ecommerce_tab_left">
+									<div class="hs-wrapper">
+										<img src={{bc.coverFile}} alt={{bc.model}} class="img-responsive" />
+										<img src={{bc.firstFile}} alt={{bc.model}} class="img-responsive" />
+										<img src={{bc.secondFile}} alt={{bc.model}} class="img-responsive" />
+										<img src={{bc.thirdFile}} alt={{bc.model}} class="img-responsive" />
+										<img src={{bc.fourthFile}} alt={{bc.model}} class="img-responsive" />
+										<img src={{bc.fifthFile}} alt={{bc.model}} class="img-responsive" />
+										<div class="w3_hs_bottom">
+											<ul>
+												<li>
+													<a href="#" data-toggle="modal" data-target="#myBatteryModal{{bc.sr}}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+												</li>
+											</ul>
+										</div>
+									</div> 
+									<h5><a>{{bc.model}}</a></h5>
+									<div class="simpleCart_shelfItem">
+										<p><span>Rs.{{bc.marketPrice}}</span> <i class="item_price">Rs.{{bc.ourPrice}}</i></p>
+										<form action="#" method="post">
+											<input type="hidden" name="cmd" value="_cart" />
+											<input type="hidden" name="add" value="1" /> 
+											<input type="hidden" name="w3ls_item" value="{{bc.model}}" /> 
+											<input type="hidden" name="amount" value="{{bc.ourPrice}}" />   
+											<button type="submit" class="w3ls-cart">Add to cart</button>
+										</form>  
+									</div>
+								</div>
+								@endeach
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="tv" aria-labelledby="tv-tab">
+							<div class="agile_ecommerce_tabs">
+								@each(sc in screenContent)
+								<div class="col-md-4 agile_ecommerce_tab_left">
+									<div class="hs-wrapper">
+										<img src={{sc.coverFile}} alt={{sc.model}} class="img-responsive" />
+										<img src={{sc.firstFile}} alt={{sc.model}}  class="img-responsive" />
+										<img src={{sc.secondFile}} alt={{sc.model}}  class="img-responsive" />
+										<img src={{sc.thirdFile}} alt={{sc.model}}  class="img-responsive" />
+										<img src={{sc.fourthFile}} alt={{sc.model}}  class="img-responsive" />
+										<img src={{sc.fifthFile}} alt={{sc.model}}  class="img-responsive" />
+										<div class="w3_hs_bottom">
+											<ul>
+												<li>
+													<a href="#" data-toggle="modal" data-target="#myScreenModal{{sc.sr}}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+												</li>
+											</ul>
+										</div>
+									</div> 
+									<h5><a>{{sc.model}}</a></h5>
+									<div class="simpleCart_shelfItem">
+										<p><span>Rs.{{sc.marketPrice}}</span> <i class="item_price">Rs.{{sc.ourPrice}}</i></p>
+										<form action="#" method="post">
+											<input type="hidden" name="cmd" value="_cart" />
+											<input type="hidden" name="add" value="1" /> 
+											<input type="hidden" name="w3ls_item" value="{{sc.model}}" /> 
+											<input type="hidden" name="amount" value="{{sc.ourPrice}}" />   
+											<button type="submit" class="w3ls-cart">Add to cart</button>
+										</form>  
+									</div>
+								</div>
+								@endeach
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+					</div>
+				</div> 
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<!-- //banner-bottom --> 
+	<!-- modal-video -->
+
+
+
+
+
+
+	@each(rc in ramContent)
+	<div class="modal video-modal fade" id="myRAMModal{{rc.sr}}" tabindex="-1" role="dialog" aria-labelledby="myRAMModal{{rc.sr}}">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+				</div>
+				<section>
+					<div class="modal-body">
+						<div class="col-md-5 modal_body_left">
+							<img src={{rc.coverFile}} alt={{rc.model}} class="img-responsive" />
+						</div>
+						<div class="col-md-7 modal_body_right">
+							<h4>{{rc.model}}</h4>
+							<p>{{rc.description}}</p>
+							<label>RAM :    </label>  {{rc.ram}}GB<br>
+							<label>Internal Storage :    </label>  {{rc.storage}}GB<br>
+							<label>Primary Camera :    </label>  {{rc.primary}}PX<br>
+							<label>Secondary Camera :    </label>  {{rc.secondary}}PX<br>
+							<label>Battery :    </label>  {{rc.battery}}mAH<br>
+							<label>Screen Size :    </label>  {{rc.screen}}inch<br>
+							<label>Sim Type :    </label>  {{rc.sim}}<br><br>
+							
+							<div class="modal_body_right_cart simpleCart_shelfItem">
+								<p><span>Rs.{{rc.marketPrice}}</span> <i class="item_price">Rs.{{rc.ourPrice}}</i></p>
+								<form action="#" method="post">
+									<input type="hidden" name="cmd" value="_cart">
+									<input type="hidden" name="add" value="1"> 
+									<input type="hidden" name="w3ls_item" value="{{rc.model}}"> 
+									<input type="hidden" name="amount" value="{{rc.ourPrice}}">   
+									<button type="submit" class="w3ls-cart">Add to cart</button>
+								</form>
+							</div>
+							
+							
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	@endeach
+
+
+
+	@each(cc in cameraContent)
+	<div class="modal video-modal fade" id="myCameraModal{{cc.sr}}" tabindex="-1" role="dialog" aria-labelledby="myCameraModal{{cc.sr}}">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+				</div>
+				<section>
+					<div class="modal-body">
+						<div class="col-md-5 modal_body_left">
+							<img src={{cc.coverFile}} alt={{cc.model}} class="img-responsive" />
+						</div>
+						<div class="col-md-7 modal_body_right">
+							<h4>{{cc.model}}</h4>
+							<p>{{cc.description}}</p>
+							<label>RAM :    </label>  {{cc.ram}}GB<br>
+							<label>Internal Storage :    </label>  {{cc.storage}}GB<br>
+							<label>Primary Camera :    </label>  {{cc.primary}}PX<br>
+							<label>Secondary Camera :    </label>  {{cc.secondary}}PX<br>
+							<label>Battery :    </label>  {{cc.battery}}mAH<br>
+							<label>Screen Size :    </label>  {{cc.screen}}inch<br>
+							<label>Sim Type :    </label>  {{cc.sim}}<br><br>
+							
+							<div class="modal_body_right_cart simpleCart_shelfItem">
+								<p><span>Rs.{{cc.marketPrice}}</span> <i class="item_price">Rs.{{cc.ourPrice}}</i></p>
+								<form action="#" method="post">
+									<input type="hidden" name="cmd" value="_cart">
+									<input type="hidden" name="add" value="1"> 
+									<input type="hidden" name="w3ls_item" value="{{cc.model}}"> 
+									<input type="hidden" name="amount" value="{{cc.ourPrice}}">   
+									<button type="submit" class="w3ls-cart">Add to cart</button>
+								</form>
+							</div>
+							
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	@endeach
+	
+	@each(bc in batteryContent)
+	<div class="modal video-modal fade" id="myBatteryModal{{bc.sr}}" tabindex="-1" role="dialog" aria-labelledby="myBatteryModal{{bc.sr}}">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+				</div>
+				<section>
+					<div class="modal-body">
+						<div class="col-md-5 modal_body_left">
+							<img src={{bc.coverFile}} alt={{bc.model}} class="img-responsive" />
+						</div>
+						<div class="col-md-7 modal_body_right">
+							<h4>{{bc.model}}</h4>
+							<p>{{bc.description}}</p>
+							<label>RAM :    </label>  {{bc.ram}}GB<br>
+							<label>Internal Storage :    </label>  {{bc.storage}}GB<br>
+							<label>Primary Camera :    </label>  {{bc.primary}}PX<br>
+							<label>Secondary Camera :    </label>  {{bc.secondary}}PX<br>
+							<label>Battery :    </label>  {{bc.battery}}mAH<br>
+							<label>Screen Size :    </label>  {{bc.screen}}inch<br>
+							<label>Sim Type :    </label>  {{bc.sim}}<br><br>
+							
+							<div class="modal_body_right_cart simpleCart_shelfItem">
+								<p><span>Rs.{{bc.marketPrice}}</span> <i class="item_price">Rs.{{bc.ourPrice}}</i></p>
+								<form action="#" method="post">
+									<input type="hidden" name="cmd" value="_cart">
+									<input type="hidden" name="add" value="1"> 
+									<input type="hidden" name="w3ls_item" value="{{bc.model}}"> 
+									<input type="hidden" name="amount" value="{{bc.ourPrice}}">   
+									<button type="submit" class="w3ls-cart">Add to cart</button>
+								</form>
+							</div>
+							
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	@endeach
+	
+	@each(sc in screenContent)
+	<div class="modal video-modal fade" id="myScreenModal{{sc.sr}}" tabindex="-1" role="dialog" aria-labelledby="myScreenModal{{sc.sr}}">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+				</div>
+				<section>
+					<div class="modal-body">
+						<div class="col-md-5 modal_body_left">
+							<img src={{sc.coverFile}} alt={{sc.model}} class="img-responsive" />
+						</div>
+						<div class="col-md-7 modal_body_right">
+							<h4>{{sc.model}}</h4>
+							<p>{{sc.description}}</p>
+							<label>RAM :    </label>  {{sc.ram}}GB<br>
+							<label>Internal Storage :    </label>  {{sc.storage}}GB<br>
+							<label>Primary Camera :    </label>  {{sc.primary}}PX<br>
+							<label>Secondary Camera :    </label>  {{sc.secondary}}PX<br>
+							<label>Battery :    </label>  {{sc.battery}}mAH<br>
+							<label>Screen Size :    </label>  {{sc.screen}}inch<br>
+							<label>Sim Type :    </label>  {{sc.sim}}<br><br>
+							
+							<div class="modal_body_right_cart simpleCart_shelfItem">
+								<p><span>Rs.{{sc.marketPrice}}</span> <i class="item_price">Rs.{{sc.ourPrice}}</i></p>
+								<form action="#" method="post">
+									<input type="hidden" name="cmd" value="_cart">
+									<input type="hidden" name="add" value="1"> 
+									<input type="hidden" name="w3ls_item" value="{{sc.model}}"> 
+									<input type="hidden" name="amount" value="{{sc.ourPrice}}">   
+									<button type="submit" class="w3ls-cart">Add to cart</button>
+								</form>
+							</div>
+							
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	@endeach
+	<!-- //modal-video -->
+
+	
+	<!-- banner-bottom1 -->
+	<div class="banner-bottom1">
+		<div class="agileinfo_banner_bottom1_grids">
+			<div class="col-md-7 agileinfo_banner_bottom1_grid_left">
+				<h3>Grand Opening Event With flat<span>{{dis}}% <i>Discount</i></span></h3>
+				<a href="/productsPage">Shop Now</a>
+			</div>
+			<div class="col-md-5 agileinfo_banner_bottom1_grid_right">
+				<h4>hot deal</h4>
+				<div class="timer_wrap">
+					<div id="counter"> </div>
+				</div>
+				<script src="js/jquery.countdown.js"></script>
+				<script src="js/script.js"></script>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<!-- //banner-bottom1 --> 
+	<!-- new-products -->
+	<div class="new-products">
+		<div class="container">
+			<h3>New Products</h3>
+			<div class="agileinfo_new_products_grids">
+				@each(np in newProducts)
+				<div class="col-md-3 agileinfo_new_products_grid">
+					<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
+						<div class="hs-wrapper hs-wrapper1">
+							<img src={{np.coverFile}} alt={{np.model}} class="img-responsive" />
+							<img src={{np.firstFile}} alt={{np.model}} class="img-responsive" />
+							<img src={{np.secondFile}} alt={{np.model}} class="img-responsive" />
+							<img src={{np.thirdFile}} alt={{np.model}} class="img-responsive" />
+							<img src={{np.fourthFile}} alt={{np.model}} class="img-responsive" />
+							<img src={{np.fifthFile}} alt={{np.model}} class="img-responsive" />
+							
+							<div class="w3_hs_bottom w3_hs_bottom_sub">
+								<ul>
+									<li>
+										<a href="#" data-toggle="modal" data-target="#newProduct{{np.sr}}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<h5><a>{{np.model}}</a></h5>
+						<div class="simpleCart_shelfItem">
+							<p><span>Rs.{{np.marketPrice}}</span> <i class="item_price">Rs.{{np.ourPrice}}</i></p>
+							<form action="#" method="post">
+								<input type="hidden" name="cmd" value="_cart">
+								<input type="hidden" name="add" value="1"> 
+								<input type="hidden" name="w3ls_item" value={{np.model.replace(/ /g, '-')}}> 
+								<input type="hidden" name="amount" value={{np.ourPrice}}>   
+								<button type="submit" class="w3ls-cart">Add to cart</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				@endeach
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!-- //new-products -->
+	<!--new-products-modals-->
+	@each(np in newProducts)
+	<div class="modal video-modal fade" id="newProduct{{np.sr}}" tabindex="-1" role="dialog" aria-labelledby="newProduct{{np.sr}}">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+				</div>
+				<section>
+					<div class="modal-body">
+						<div class="col-md-5 modal_body_left">
+							<img src={{np.coverFile}} alt={{np.model}} class="img-responsive" />
+						</div>
+						<div class="col-md-7 modal_body_right">
+							<h4>{{np.model}}</h4>
+							<p>{{np.description}}</p>
+							<label>RAM :    </label>  {{np.ram}}GB<br>
+							<label>Internal Storage :    </label>  {{np.storage}}GB<br>
+							<label>Primary Camera :    </label>  {{np.primary}}PX<br>
+							<label>Secondary Camera :    </label>  {{np.secondary}}PX<br>
+							<label>Battery :    </label>  {{np.battery}}mAH<br>
+							<label>Screen Size :    </label>  {{np.screen}}inch<br>
+							<label>Sim Type :    </label>  {{np.sim}}<br><br>
+							
+							<div class="modal_body_right_cart simpleCart_shelfItem">
+								<p><span>Rs.{{np.marketPrice}}</span> <i class="item_price">Rs.{{np.ourPrice}}</i></p>
+								<form action="#" method="post">
+									<input type="hidden" name="cmd" value="_cart">
+									<input type="hidden" name="add" value="1"> 
+									<input type="hidden" name="w3ls_item" value="{{np.model}}"> 
+									<input type="hidden" name="amount" value="{{np.ourPrice}}">   
+									<button type="submit" class="w3ls-cart">Add to cart</button>
+								</form>
+							</div>
+							
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	@endeach
+	
+	<!--//new-products-modals-->
+	<!-- top-brands -->
+	<div class="top-brands">
+		<div class="container">
+			<h3>Top Brands</h3>
+			<div class="sliderfig">
+				
+				<ul id="flexiselDemo1">	
+					@each(b in brands)	
+					<li>
+						<img src="{{b.image}}" alt={{b.name}} class="img-responsive" />
+					</li>
+					@endeach
+				</ul>
+			</div>
+			<script type="text/javascript">
+					$(window).load(function() {
+						$("#flexiselDemo1").flexisel({
+							visibleItems: 4,
+							animationSpeed: 1000,
+							autoPlay: true,
+							autoPlaySpeed: 3000,    		
+							pauseOnHover: true,
+							enableResponsiveBreakpoints: true,
+							responsiveBreakpoints: { 
+								portrait: { 
+									changePoint:480,
+									visibleItems: 1
+								}, 
+								landscape: { 
+									changePoint:640,
+									visibleItems:2
+								},
+								tablet: { 
+									changePoint:768,
+									visibleItems: 3
+								}
+							}
+						});
+						
+					});
+			</script>
+			<script type="text/javascript" src="js/jquery.flexisel.js"></script>
+		</div>
+	</div>
+@endsection

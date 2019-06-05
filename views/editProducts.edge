@@ -1,0 +1,245 @@
+@layout('layouts.app')
+
+@section('content')
+<div class="sidenav">
+			<li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-0"><i class="fa fa-fw fa-pencil"></i>Website Editing<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-0">
+                    <li style="padding-left:12px"><a href="/editHome"><i class="fa fa-fw fa-home"></i>Edit Home</a></li>
+                    <li style="padding-left:12px"><a href="/editProducts"><i class="fa fa-fw fa-cube"></i>Edit Products</a></li>
+           	        <li style="padding-left:12px"><a href="/editOffers"><i class="fa fa-fw fa-gift"></i>Edit Offers</a></li>
+                </ul>
+            </li>
+            <li style="list-style:none">
+                <a href="/onlineOrders"><i class="fa fa-fw fa-pencil"></i>Online orders<i class="fa fa-fw fa-angle-down"></i></a>
+            </li>
+            <li style="list-style:none">
+                <a href="/changeSectionAndPayment"><i class="fa fa-fw fa-pencil"></i>Edit Section & Payment<i class="fa fa-fw fa-angle-down"></i></a>
+            </li>
+            <li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-pencil"></i>Store Products<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-2">
+                    <li style="padding-left:12px"><a href="/addStoreProduct"><i class="fa fa-fw fa-plus"></i>Add Product</a></li>
+                    <li style="padding-left:12px"><a href="/changeProducts"><i class="fa fa-fw fa-times"></i>Edit/Delete Product</a></li>
+                </ul>
+            </li>
+            <li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-credit-card"></i>Invoice<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-1">
+                    <li style="padding-left:12px"><a href="/generateInvoice"><i class="fa fa-fw fa-calculator"></i>Generate Invoice</a></li>
+                    <li style="padding-left:12px"><a href="/seeInvoiceRecord"><i class="fa fa-fw fa-user"></i>See Invoice Record</a></li>
+                </ul>
+            </li>
+            <li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-fw fa-bar-chart"></i>Reports<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-3">
+                	<li style="padding-left:12px"><a href="/invoiceReport"><i class="fa fa-fw fa-calendar"></i>Invoice Report</a></li>
+                    <li style="padding-left:12px"><a href="/saleReport"><i class="fa 
+                    fa-fw fa-bar-chart"></i>Sales Report</a></li>
+                    <li style="padding-left:12px"><a href="/productsReport"><i class="fa fa-fw fa-product-hunt"></i>Products-Sale Report</a></li>
+                    <li style="padding-left:12px"><a href="/topProductsReport"><i class="fa fa-fw fa-sort-numeric-desc"></i>Top Products Report</a></li>
+                    <li style="padding-left:12px"><a href="/stockReport"><i class="fa fa-fw fa-tasks"></i>Stock Report</a></li>
+                </ul>
+            </li>
+</div>
+
+<div class="main">
+<br/>
+<h3>Welcome {{authname}}</h3>
+<br>
+<a data-toggle="modal" href="#addProduct">Click here to add Products</a><br><br> 
+
+<a data-toggle="modal" href="#removeProduct">Click here to remove Products</a><br><br> 
+</div>
+<br><br><br><br><br><br><br><br><br><br><br>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<div id="addProduct" class="modal fade" role="dialog" >
+	<div class="modal-dialog">
+	<div class="modal-content">
+	<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title" style="color: white;">ADD NEW PRODUCT</h4>
+	</div>
+	<div class="modal-body">
+	<form class="form-inline" action="/addProduct" method="post" enctype="multipart/form-data">
+	<br>
+	
+	
+			<div class="form-group">
+				<label>Brand :</label><br>
+				@each(b in brands)
+				<label class="radio-inline">					
+				<input type="radio" name="brand" value="{{b.name}}" required>  {{b.name}}</label>
+				@endeach
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.7000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="price" title="ENTER NUMBERS ONLY (not RS.7000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 8GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="internalStorage" title="ENTER NUMBERS ONLY (not 8GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primaryCamera" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondaryCamera" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="batteryCapacity" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screenSize" title="ENTER NUMBERS ONLY (not 6inches)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<span style="width:100%">
+			<span style="width:50%">
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="simType" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="simType" value="Dual Sim">   Dual Sim</label>
+			</div>
+			</span>
+			<span style="padding-left:34%">
+			<div class="form-group">
+				<label>Phone Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="phoneType" value="Feature Phone" required>   Feature Phone</label>
+				<label class="radio-inline">					
+				<input type="radio" name="phoneType" value="Smart Phone">   Smart Phone</label>
+			</div>
+			</span>
+			</span>
+			<br/><br/>
+
+			<div class="form-group">
+				<label>Offers :</label><br>
+				<label class="checkbox-inline">					
+				<input type="checkbox" name="offers" value="No Cost EMI">  No Cost EMI offer</label>
+				<label class="checkbox-inline">					
+				<input type="checkbox" name="phoneType" value="Special Price" required>  Special Price Offer</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				<label>Features :</label><br>
+				<label class="checkbox-inline">					
+				<input type="checkbox" name="features" value="Bluetooth" required>  Bluetooth</label>
+				<label class="checkbox-inline">					
+				<input type="checkbox" name="features" value="Wifi">  Wifi</label>
+				<label class="checkbox-inline">					
+				<input type="checkbox" name="features" value="GPRS">  GPRS</label>
+				<label class="checkbox-inline">					
+				<input type="checkbox" name="features" value="USB">  USB</label>
+				<label class="checkbox-inline">					
+				<input type="checkbox" name="features" value="FM">  FM</label>
+				<label class="checkbox-inline">					
+				<input type="checkbox" name="features" value="HD Recording">  HD Recording</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+		
+
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+	</div>
+	<div class="modal-footer" style="background-image: url('images/D.jpg');">
+	<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+<div id="removeProduct" class="modal fade" role="dialog" >
+	<div class="modal-dialog" style="width:auto; height:auto">
+	<div class="modal-content">
+	<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title" style="color: white;">REMOVE PRODUCT</h4>
+	</div>
+	<div class="modal-body">
+	<br>
+				@each(p in pr)	
+				<form action="/removeProduct/{{p._id}}" method="get" enctype="multipart/form-data">
+	
+					<li style="list-style:none">
+						<div>
+						
+						<img src='{{p.cover}}' style="height:100px; width:100px; padding-top:5px"/>
+						<label>{{p.brand}} - {{p.model}}</label>
+						<div class="pull-right">
+						<button class="btn btn-success">Edit</button><button type="submit" style="width:32px; height:22px; margin :0px" class="close"><span class="cust">
+						&times;</span></button></div>
+						</div>
+	
+						
+					</li>
+					</form>
+				@endeach
+	
+	</div>
+	<div class="modal-footer" style="background-image: url('images/D.jpg');">
+	<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+@endsection

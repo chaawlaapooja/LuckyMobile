@@ -1,0 +1,2227 @@
+@layout('layouts.app')
+
+@section('content')
+<style>
+	.dropbtn {
+	    background-color: #3498DB;
+	    color: white;
+	    padding: 16px;
+	    font-size: 16px;
+	    border: none;
+	    cursor: pointer;
+	}
+
+	.dropbtn:hover, .dropbtn:focus {
+	    background-color: #2980B9;
+	}
+
+	.dropdown {
+	    position: relative;
+	    display: inline-block;
+	}
+
+	.dropdown-content {
+	    display: none;
+	    position: absolute;
+	    background-color: #f1f1f1;
+	    min-width: 80px;
+	    overflow: auto;
+	    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	    z-index: 1;
+	}
+
+	.dropdown-content a {
+	    color: black;
+	    padding: 12px 16px;
+	    text-decoration: none;
+	    display: block;
+	}
+
+	.dropdown a:hover {background-color: #ddd;}
+
+	.show {display: block;}
+	.cust{
+
+  display: inline-block;
+  text-align:right;
+	}
+</style>
+<div class="sidenav">
+			<li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-0"><i class="fa fa-fw fa-pencil"></i>Website Editing<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-0">
+                    <li style="padding-left:12px"><a href="/editHome"><i class="fa fa-fw fa-home"></i>Edit Home</a></li>
+                    <li style="padding-left:12px"><a href="/editProducts"><i class="fa fa-fw fa-cube"></i>Edit Products</a></li>
+           	        <li style="padding-left:12px"><a href="/editOffers"><i class="fa fa-fw fa-gift"></i>Edit Offers</a></li>
+                </ul>
+            </li>
+            <li style="list-style:none">
+                <a href="/onlineOrders"><i class="fa fa-fw fa-pencil"></i>Online orders<i class="fa fa-fw fa-angle-down"></i></a>
+            </li>
+            <li style="list-style:none">
+                <a href="/changeSectionAndPayment"><i class="fa fa-fw fa-pencil"></i>Edit Section & Payment<i class="fa fa-fw fa-angle-down"></i></a>
+            </li>
+            <li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-pencil"></i>Store Products<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-2">
+                    <li style="padding-left:12px"><a href="/addStoreProduct"><i class="fa fa-fw fa-plus"></i>Add Product</a></li>
+                    <li style="padding-left:12px"><a href="/changeProducts"><i class="fa fa-fw fa-times"></i>Edit/Delete Product</a></li>
+                </ul>
+            </li>
+            <li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-credit-card"></i>Invoice<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-1">
+                    <li style="padding-left:12px"><a href="/generateInvoice"><i class="fa fa-fw fa-calculator"></i>Generate Invoice</a></li>
+                    <li style="padding-left:12px"><a href="/seeInvoiceRecord"><i class="fa fa-fw fa-user"></i>See Invoice Record</a></li>
+                </ul>
+            </li>
+            <li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-fw fa-bar-chart"></i>Reports<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-3">
+                	<li style="padding-left:12px"><a href="/invoiceReport"><i class="fa fa-fw fa-calendar"></i>Invoice Report</a></li>
+                    <li style="padding-left:12px"><a href="/saleReport"><i class="fa 
+                    fa-fw fa-bar-chart"></i>Sales Report</a></li>
+                    <li style="padding-left:12px"><a href="/productsReport"><i class="fa fa-fw fa-product-hunt"></i>Products-Sale Report</a></li>
+                    <li style="padding-left:12px"><a href="/topProductsReport"><i class="fa fa-fw fa-sort-numeric-desc"></i>Top Products Report</a></li>
+                    <li style="padding-left:12px"><a href="/stockReport"><i class="fa fa-fw fa-tasks"></i>Stock Report</a></li>
+                </ul>
+            </li>
+</div>
+
+<div class="main">
+<br>
+<h3> Welcome {{authname}}</h3>
+<br>
+
+<a data-toggle="modal" href="#changeDiscountAmount">Click here to change discount amount</a><br><br>
+
+<a data-toggle="modal" href="#changeBannerImage">Click here to change banner image</a><br><br>
+
+<a data-toggle="modal" href="#changeBottomImage">Click here to change banner bottom image</a><br><br>
+
+<a data-toggle="modal" href="#changeRAM">Click here to change RAM content</a><br><br>
+<a data-toggle="modal" href="#changeCamera">Click here to change camera content</a><br><br>
+<a data-toggle="modal" href="#changeBattery">Click here to change battery content</a><br><br>
+<a data-toggle="modal" href="#changeScreenSize">Click here to change screen size content</a><br><br>
+
+<a data-toggle="modal" href="#changeNewProducts">Click here to change New Products content</a><br><br> 
+
+<a data-toggle="modal" href="#changeBrand">Click here to change Brands section</a><br><br> 
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</div>
+
+<div id="changeDiscountAmount" class="modal fade" role="dialog" >
+	<div class="modal-dialog">
+	<div class="modal-content">
+	<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title" style="color: white;">Change discount amount</h4>
+	</div>
+	<div class="modal-body">
+	<form action="/changeDiscountAmount" method="post">
+	<br>
+	<div class="form-group">
+		<label>Enter Amount :</label>
+			<input type="number" class="form-control" placeholder="Enter discount amount" name="amount" title="ENTER Numerics only." required>
+	</div>
+
+	
+
+	
+	
+	<button type="submit" class="btn btn-default" name="submit" value="submit">SUBMIT!</button>
+	</form>
+	</div>
+	<div class="modal-footer" style="background-image: url('images/D.jpg');">
+	<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+
+<div id="changeBannerImage" class="modal fade" role="dialog" >
+	<div class="modal-dialog">
+	<div class="modal-content">
+	<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title" style="color: white;">CHANGE BANNER IMAGE</h4>
+	</div>
+	<div class="modal-body">
+	<form action="/changeBannerImage" method="post" enctype="multipart/form-data">
+	<div class="form-group">
+	<br>
+	<input type="file" class="form-control"  name="image" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED."  required>
+	</div>
+	
+	<button type="submit" class="btn btn-default" name="submit" value="submit">CHANGE!</button>
+	</form>
+	</div>
+	<div class="modal-footer" style="background-image: url('images/D.jpg');">
+	<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+<div id="changeBottomImage" class="modal fade" role="dialog" >
+	<div class="modal-dialog">
+	<div class="modal-content">
+	<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title" style="color: white;">CHANGE BANNER BOTTOM IMAGE</h4>
+	</div>
+	<div class="modal-body">
+	<form action="/changeBannerBottomImage" method="post" enctype="multipart/form-data">
+	<div class="form-group">
+	<br>
+	<input type="file" class="form-control"  name="image" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED."  required>
+	</div>
+	
+	<button type="submit" class="btn btn-default" name="submit" value="submit">CHANGE!</button>
+	</form>
+	</div>
+	<div class="modal-footer" style="background-image: url('images/D.jpg');">
+	<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+<div id="changeRAM" class="modal fade" role="dialog" >
+	<div class="modal-dialog">
+	<div class="modal-content">
+	<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title" style="color: white;">CHANGE RAM MODELS</h4>
+	</div>
+	<div class="modal-body">
+		<div class="form-group">
+		<br>
+		<a data-toggle="modal" href="#changeRAM1"> Change first RAM model</a>
+		</div>
+		<div class="form-group">
+		<a data-toggle="modal" href="#changeRAM2"> Change second RAM model</a>
+		</div>
+		<div class="form-group">
+		<a data-toggle="modal" href="#changeRAM3"> Change third RAM model</a>
+		</div>
+	</div>
+	<div class="modal-footer" style="background-image: url('images/D.jpg');">
+	<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+<div id="changeCamera" class="modal fade" role="dialog" >
+	<div class="modal-dialog">
+	<div class="modal-content">
+	<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title" style="color: white;">CHANGE CAMERA MODELS</h4>
+	</div>
+	<div class="modal-body">
+		<div class="form-group">
+		<br>
+		<a data-toggle="modal" href="#changeCamera1"> Change first Camera model</a>
+		</div>
+		<div class="form-group">
+		<a data-toggle="modal" href="#changeCamera2"> Change second Camera model</a>
+		</div>
+		<div data-toggle="modal" class="form-group">
+		<a data-toggle="modal" href="#changeCamera3"> Change third Camera model</a>
+		</div>
+	</div>
+	<div class="modal-footer" style="background-image: url('images/D.jpg');">
+	<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+<div id="changeBattery" class="modal fade" role="dialog" >
+	<div class="modal-dialog">
+	<div class="modal-content">
+	<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title" style="color: white;">CHANGE BATTERY MODELS</h4>
+	</div>
+	<div class="modal-body">
+		<div class="form-group">
+		<br>
+		<a data-toggle="modal" href="#changeBattery1"> Change first Battery model</a>
+		</div>
+		<div class="form-group">
+		<a data-toggle="modal" href="#changeBattery2"> Change second Battery model</a>
+		</div>
+		<div class="form-group">
+		<a data-toggle="modal" href="#changeBattery3"> Change third Battery model</a>
+		</div>
+	</div>
+	<div class="modal-footer" style="background-image: url('images/D.jpg');">
+	<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+<div id="changeScreenSize" class="modal fade" role="dialog" >
+	<div class="modal-dialog">
+	<div class="modal-content">
+	<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title" style="color: white;">CHANGE SCREEN SIZE MODELS</h4>
+	</div>
+	<div class="modal-body">
+		<div class="form-group">
+		<br>
+		<a data-toggle="modal" href="#changeScreen1"> Change first Screen model</a>
+		</div>
+		<div class="form-group">
+		<a data-toggle="modal" href="#changeScreen2"> Change second Screen model</a>
+		</div>
+		<div class="form-group">
+		<a data-toggle="modal" href="#changeScreen3"> Change third Screen model</a>
+		</div>
+	</div>
+	<div class="modal-footer" style="background-image: url('images/D.jpg');">
+	<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+
+<div id="changeRAM1" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE FIRST RAM MODEL</h4>
+			</div>
+			<div class="modal-body">
+
+			<form action="/changeRAM1" method="post" enctype="multipart/form-data" class="form-inline">
+			<br>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="ourPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="storage" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="battery" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screen" title="ENTER NUMBERS ONLY (not 5inch)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Dual Sim">   Dual Sim</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fourth Image</label>
+			<input type="file" class="form-control"  name="fourth" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fifth Image</label>
+			<input type="file" class="form-control"  name="fifth" required>
+			</div>
+			<br/><br/>
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="changeRAM2" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE SECOND RAM MODEL</h4>
+			</div>
+			<div class="modal-body">
+
+			<form action="/changeRAM2" method="post" enctype="multipart/form-data"class="form-inline">
+			<br>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="ourPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="storage" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="battery" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screen" title="ENTER NUMBERS ONLY (not 5inch)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Dual Sim">   Dual Sim</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fourth Image</label>
+			<input type="file" class="form-control"  name="fourth" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fifth Image</label>
+			<input type="file" class="form-control"  name="fifth" required>
+			</div>
+			<br/><br/>
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="changeRAM3" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE THIRD RAM MODEL</h4>
+			</div>
+			<div class="modal-body">
+
+			<form action="/changeRAM3" method="post" enctype="multipart/form-data"class="form-inline">
+			<br>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="ourPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="storage" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="battery" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screen" title="ENTER NUMBERS ONLY (not 5inch)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Dual Sim">   Dual Sim</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fourth Image</label>
+			<input type="file" class="form-control"  name="fourth" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fifth Image</label>
+			<input type="file" class="form-control"  name="fifth" required>
+			</div>
+			<br/><br/>
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="changeCamera1" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE FIRST CAMERA MODEL</h4>
+			</div>
+			<div class="modal-body">
+
+			<form action="/changeCamera1" method="post" enctype="multipart/form-data"class="form-inline">
+			<br>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="ourPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="storage" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="battery" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screen" title="ENTER NUMBERS ONLY (not 5inch)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Dual Sim">   Dual Sim</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fourth Image</label>
+			<input type="file" class="form-control"  name="fourth" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fifth Image</label>
+			<input type="file" class="form-control"  name="fifth" required>
+			</div>
+			<br/><br/>
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="changeCamera2" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE SECOND CAMERA MODEL</h4>
+			</div>
+			<div class="modal-body">
+
+			<form action="/changeCamera2" method="post" enctype="multipart/form-data"class="form-inline">
+			<br>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="ourPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="storage" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="battery" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screen" title="ENTER NUMBERS ONLY (not 5inch)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Dual Sim">   Dual Sim</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fourth Image</label>
+			<input type="file" class="form-control"  name="fourth" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fifth Image</label>
+			<input type="file" class="form-control"  name="fifth" required>
+			</div>
+			<br/><br/>
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="changeCamera3" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE THIRD CAMERA MODEL</h4>
+			</div>
+			<div class="modal-body">
+
+			<form action="/changeCamera3" method="post" enctype="multipart/form-data"class="form-inline">
+			<br>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="ourPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="storage" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="battery" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screen" title="ENTER NUMBERS ONLY (not 5inch)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Dual Sim">   Dual Sim</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fourth Image</label>
+			<input type="file" class="form-control"  name="fourth" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fifth Image</label>
+			<input type="file" class="form-control"  name="fifth" required>
+			</div>
+			<br/><br/>
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="changeBattery1" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE FIRST BATTERY MODEL</h4>
+			</div>
+			<div class="modal-body">
+
+			<form action="/changeBattery1" method="post" enctype="multipart/form-data"class="form-inline">
+			<br>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="ourPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="storage" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="battery" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screen" title="ENTER NUMBERS ONLY (not 5inch)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Dual Sim">   Dual Sim</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fourth Image</label>
+			<input type="file" class="form-control"  name="fourth" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fifth Image</label>
+			<input type="file" class="form-control"  name="fifth" required>
+			</div>
+			<br/><br/>
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="changeBattery2" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE SECOND BATTERY MODEL</h4>
+			</div>
+			<div class="modal-body">
+
+			<form action="/changeBattery2" method="post" enctype="multipart/form-data"class="form-inline">
+			<br>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="ourPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="storage" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="battery" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screen" title="ENTER NUMBERS ONLY (not 5inch)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Dual Sim">   Dual Sim</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fourth Image</label>
+			<input type="file" class="form-control"  name="fourth" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fifth Image</label>
+			<input type="file" class="form-control"  name="fifth" required>
+			</div>
+			<br/><br/>
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="changeBattery3" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE THIRD BATTERY MODEL</h4>
+			</div>
+			<div class="modal-body">
+
+			<form action="/changeBattery3" method="post" enctype="multipart/form-data"class="form-inline">
+			<br>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="ourPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="storage" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="battery" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screen" title="ENTER NUMBERS ONLY (not 5inch)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Dual Sim">   Dual Sim</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fourth Image</label>
+			<input type="file" class="form-control"  name="fourth" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fifth Image</label>
+			<input type="file" class="form-control"  name="fifth" required>
+			</div>
+			<br/><br/>
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="changeScreen1" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE FIRST SCREEN MODEL</h4>
+			</div>
+			<div class="modal-body">
+
+			<form action="/changeScreen1" method="post" enctype="multipart/form-data"class="form-inline">
+			<br>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="ourPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="storage" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="battery" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screen" title="ENTER NUMBERS ONLY (not 5inch)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Dual Sim">   Dual Sim</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fourth Image</label>
+			<input type="file" class="form-control"  name="fourth" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fifth Image</label>
+			<input type="file" class="form-control"  name="fifth" required>
+			</div>
+			<br/><br/>
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="changeScreen2" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE SECOND SCREEN MODEL</h4>
+			</div>
+			<div class="modal-body">
+
+			<form action="/changeScreen2" method="post" enctype="multipart/form-data"class="form-inline">
+			<br>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="ourPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="storage" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="battery" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screen" title="ENTER NUMBERS ONLY (not 5inch)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Dual Sim">   Dual Sim</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fourth Image</label>
+			<input type="file" class="form-control"  name="fourth" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fifth Image</label>
+			<input type="file" class="form-control"  name="fifth" required>
+			</div>
+			<br/><br/>
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="changeScreen3" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE THIRD SCREEN MODEL</h4>
+			</div>
+			<div class="modal-body">
+
+			<form action="/changeScreen3" method="post" enctype="multipart/form-data"class="form-inline">
+			<br>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="ourPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="storage" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="battery" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screen" title="ENTER NUMBERS ONLY (not 5inch)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Dual Sim">   Dual Sim</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fourth Image</label>
+			<input type="file" class="form-control"  name="fourth" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fifth Image</label>
+			<input type="file" class="form-control"  name="fifth" required>
+			</div>
+			<br/><br/>
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="changeNewProducts" class="modal fade" role="dialog" >
+	<div class="modal-dialog">
+	<div class="modal-content">
+	<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title" style="color: white;">CHANGE MODELS OF NEW PRODUCTS SECTION</h4>
+	</div>
+	<div class="modal-body">
+		<div class="form-group">
+		<br>
+		<a data-toggle="modal" href="#newProduct1"> Change first model</a>
+		</div>
+		<div class="form-group">
+		<a data-toggle="modal" href="#newProduct2"> Change second model</a>
+		</div>
+		<div class="form-group">
+		<a data-toggle="modal" href="#newProduct3"> Change third model</a>
+		</div>
+		<div class="form-group">
+		<a data-toggle="modal" href="#newProduct4"> Change fourth model</a>
+		</div>
+	</div>
+	<div class="modal-footer" style="background-image: url('images/D.jpg');">
+	<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+<div id="newProduct1" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE FIRST MODEL OF NEW PRODUCT</h4>
+			</div>
+			<div class="modal-body">
+
+			<form action="/changeNewProduct1" method="post" enctype="multipart/form-data"class="form-inline">
+			<br>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="ourPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="storage" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="battery" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screen" title="ENTER NUMBERS ONLY (not 5inch)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Dual Sim">   Dual Sim</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fourth Image</label>
+			<input type="file" class="form-control"  name="fourth" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fifth Image</label>
+			<input type="file" class="form-control"  name="fifth" required>
+			</div>
+			<br/><br/>
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="newProduct2" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE SECOND MODEL OF NEW PRODUCTS</h4>
+			</div>
+			<div class="modal-body">
+
+			<form action="/changeNewProduct2" method="post" enctype="multipart/form-data"class="form-inline">
+			<br>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="ourPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="storage" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="battery" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screen" title="ENTER NUMBERS ONLY (not 5inch)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Dual Sim">   Dual Sim</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fourth Image</label>
+			<input type="file" class="form-control"  name="fourth" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fifth Image</label>
+			<input type="file" class="form-control"  name="fifth" required>
+			</div>
+			<br/><br/>
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="newProduct3" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE THIRD MODEL OF NEW PRODUCTS</h4>
+			</div>
+			<div class="modal-body">
+
+			<form action="/changeNewProduct3" method="post" enctype="multipart/form-data"class="form-inline">
+			<br>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="ourPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="storage" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="battery" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screen" title="ENTER NUMBERS ONLY (not 5inch)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Dual Sim">   Dual Sim</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fourth Image</label>
+			<input type="file" class="form-control"  name="fourth" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fifth Image</label>
+			<input type="file" class="form-control"  name="fifth" required>
+			</div>
+			<br/><br/>
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="newProduct4" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE FOURTH MODEL OF NEW PRODUCTS</h4>
+			</div>
+			<div class="modal-body">
+
+			<form action="/changeNewProduct4" method="post" enctype="multipart/form-data"class="form-inline">
+			<br>
+			<div class="form-group" style="width:100%">
+			<label>Enter Name of Model :</label>
+			<input type="text" style="width:100%" class="form-control" placeholder="ENTER NAME" name="model" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<label>Enter Description :</label>
+			<textarea name="description" style="width:100%" placeholder="Please enter description of model" class="form-control" required></textarea> 
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Enter Market price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER MARKET PRICE" name="marketPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			<span style="padding-left:18%">
+			<label>Enter our price :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER OUR PRICE" name="ourPrice" title="ENTER NUMBERS ONLY (not RS.2000)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>RAM :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER RAM" name="ram" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			<span style="padding-left:31%">
+			<label>Internal Storage :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER INTERNAL STORAGE" name="storage" title="ENTER NUMBERS ONLY (not 4GB)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span >
+			<label>Primary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER PRIMAY CAMERA PIXELS" name="primary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			<span style="padding-left:20%">
+			<label>Secondary Camera :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER SECONDARY CAMER IN PIXELS" name="secondary" title="ENTER NUMBERS ONLY (not 8PX)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group" style="width:100%">
+			<span style="width:50%">
+			<label>Battery :</label>
+			<input type="number" min="1" class="form-control" placeholder="ENTER BATTERY CAPACITY" name="battery" title="ENTER NUMBERS ONLY (not 4000mAH)" required>
+			</span>
+			<span style="padding-left:28%">
+			<label>Screen size :</label>
+			<input type="number" min="1" step="0.1" class="form-control" placeholder="ENTER SCREEN SIZE IN INCHES" name="screen" title="ENTER NUMBERS ONLY (not 5inch)" required>
+			</span>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+				
+				<label>Sim Type :</label><br>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Single Sim" required>   Single Sim</label>
+				<label class="radio-inline">					
+				<input type="radio" name="sim" value="Dual Sim">   Dual Sim</label>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose Cover Image</label>
+			<input type="file" class="form-control"  name="cover" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose First Image</label>
+			<input type="file" class="form-control"  name="first" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose second Image</label>
+			<input type="file" class="form-control"  name="second" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose third Image</label>
+			<input type="file" class="form-control"  name="third" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fourth Image</label>
+			<input type="file" class="form-control"  name="fourth" required>
+			</div>
+			<br/><br/>
+			<div class="form-group">
+			<label>Choose fifth Image</label>
+			<input type="file" class="form-control"  name="fifth" required>
+			</div>
+			<br/><br/>
+			<button type="submit" class="btn btn-success" name="submit" value="submit">SAVE!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="changeBrand" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">CHANGE BRAND SECTION</h4>
+			</div>
+			<div class="modal-body"><br><br>
+				<a data-toggle="modal" href="#addBrand">Click here to add New Brand</a><br><br> 
+				<a data-toggle="modal" href="#removeBrand">Click here to remove Brands</a><br><br> 
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="addBrand" class="modal fade" role="dialog" >
+	<div class="modal-dialog">
+	<div class="modal-content">
+	<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title" style="color: white;">ADD NEW BRAND</h4>
+	</div>
+	<div class="modal-body">
+	<form action="/addBrand" method="post" enctype="multipart/form-data">
+	<br>
+	<div class="form-group">
+		<label>Brand Name :</label>
+			<input type="text" class="form-control" placeholder="ENTER BRAND NAME" name="name" title="ENTER UNIQUE NAME IN ALPHABETS ONLY. SPECIAL SYMBOLS ARE PROHIBITED." required>
+	</div>
+
+	<div class="form-group">
+			<label>Choose Image for Brand</label>
+			<input type="file" class="form-control"  name="image" required>
+	</div>
+
+	
+	
+	<button type="submit" class="btn btn-default" name="submit" value="submit">SUBMIT!</button>
+	</form>
+	</div>
+	<div class="modal-footer" style="background-image: url('images/D.jpg');">
+	<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+<div id="removeBrand" class="modal fade" role="dialog" >
+	<div class="modal-dialog" style="width:auto;">
+	<div class="modal-content">
+	<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title" style="color: white;">REMOVE BRAND</h4>
+	</div>
+	<div class="modal-body">
+	<br>
+				@each(b in brands)	
+				<form action="/removeBrand/{{b._id}}" method="get" enctype="multipart/form-data">
+					<li style="list-style:square">
+						{{b.name}} <img src={{b.image}} alt={{b.name}}>
+						<button type="submit" style="width:32px; height:22px; margin :0px" class="close"><span class="cust">
+						&times;</span></button>
+					</li>
+					</form>
+				@endeach
+	
+	</div>
+	<div class="modal-footer" style="background-image: url('images/D.jpg');">
+	<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+
+@endsection

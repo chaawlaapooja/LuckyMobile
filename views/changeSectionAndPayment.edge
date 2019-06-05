@@ -1,0 +1,175 @@
+@layout('layouts.app')
+
+@section('content')
+<div class="sidenav">
+			<li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-0"><i class="fa fa-fw fa-pencil"></i>Website Editing<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-0">
+                    <li style="padding-left:12px"><a href="/editHome"><i class="fa fa-fw fa-home"></i>Edit Home</a></li>
+                    <li style="padding-left:12px"><a href="/editProducts"><i class="fa fa-fw fa-cube"></i>Edit Products</a></li>
+           	        <li style="padding-left:12px"><a href="/editOffers"><i class="fa fa-fw fa-gift"></i>Edit Offers</a></li>
+                </ul>
+            </li>
+            <li style="list-style:none">
+                <a href="/onlineOrders"><i class="fa fa-fw fa-pencil"></i>Online orders<i class="fa fa-fw fa-angle-down"></i></a>
+            </li>
+            <li style="list-style:none">
+                <a href="/changeSectionAndPayment"><i class="fa fa-fw fa-pencil"></i>Edit Section & Payment<i class="fa fa-fw fa-angle-down"></i></a>
+            </li>
+            <li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-pencil"></i>Store Products<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-2">
+                    <li style="padding-left:12px"><a href="/addStoreProduct"><i class="fa fa-fw fa-plus"></i>Add Product</a></li>
+                    <li style="padding-left:12px"><a href="/changeProducts"><i class="fa fa-fw fa-times"></i>Edit/Delete Product</a></li>
+                </ul>
+            </li>
+            <li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-credit-card"></i>Invoice<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-1">
+                    <li style="padding-left:12px"><a href="/generateInvoice"><i class="fa fa-fw fa-calculator"></i>Generate Invoice</a></li>
+                    <li style="padding-left:12px"><a href="/seeInvoiceRecord"><i class="fa fa-fw fa-user"></i>See Invoice Record</a></li>
+                </ul>
+            </li>
+            <li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-fw fa-bar-chart"></i>Reports<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-3">
+                	<li style="padding-left:12px"><a href="/invoiceReport"><i class="fa fa-fw fa-calendar"></i>Invoice Report</a></li>
+                    <li style="padding-left:12px"><a href="/saleReport"><i class="fa 
+                    fa-fw fa-bar-chart"></i>Sales Report</a></li>
+                    <li style="padding-left:12px"><a href="/productsReport"><i class="fa fa-fw fa-product-hunt"></i>Products-Sale Report</a></li>
+                    <li style="padding-left:12px"><a href="/topProductsReport"><i class="fa fa-fw fa-sort-numeric-desc"></i>Top Products Report</a></li>
+                    <li style="padding-left:12px"><a href="/stockReport"><i class="fa fa-fw fa-tasks"></i>Stock Report</a></li>
+                </ul>
+            </li>
+</div>
+
+<div class="main">
+<br>
+<h2>Welcome  {{authname}}</h2><hr><br>
+<a data-toggle="modal" href="#addSection">Click here to add Section</a><br><br> 
+
+<a data-toggle="modal" href="#removeSection">Click here to remove Section</a><br><br> 
+<a data-toggle="modal" href="#addPaymentMode">Click here to add Payment Mode</a><br><br> 
+
+<a data-toggle="modal" href="#removePaymentMode">Click here to remove Payment Mode</a><br><br> 
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+</div>
+
+<div id="addSection" class="modal fade" role="dialog" >
+	<div class="modal-dialog">
+	<div class="modal-content">
+	<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title" style="color: white;">ADD NEW SECTION</h4>
+	</div>
+	<div class="modal-body">
+	<form action="/addSection" method="post">
+	<br>
+	
+	<div class="form-group">
+			<label>Enter Name of Section :</label>
+			<input type="text" class="form-control"  name="section_name" required>
+	</div>
+
+	
+	
+	<button type="submit" class="btn btn-default" name="submit" value="submit">SUBMIT!</button>
+	</form>
+	</div>
+	<div class="modal-footer" style="background-image: url('images/D.jpg');">
+	<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+<div id="removeSection" class="modal fade" role="dialog">
+	<div class="modal-dialog" style="height:auto; width:auto">
+	<div class="modal-content">
+	<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title" style="color: white;">REMOVE OFFER</h4>
+	</div>
+	<div class="modal-body">
+	<br>
+				@each(s in section)	
+				<form action="/removeSection/{{s._id}}" method="get">
+	
+					<li style="list-style:none">
+						<label>{{s.section_name}}</label>
+						<button type="submit" style="width:32px; height:22px; margin :0px" class="close"><span class="cust">
+						&times;</span></button>
+	
+						
+					</li>
+					</form>
+				@endeach
+	
+	</div>
+	<div class="modal-footer" style="background-image: url('images/D.jpg');">
+	<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+<div id="addPaymentMode" class="modal fade" role="dialog" >
+	<div class="modal-dialog">
+	<div class="modal-content">
+	<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title" style="color: white;">ADD NEW SECTION</h4>
+	</div>
+	<div class="modal-body">
+	<form action="/addPaymentMode" method="post">
+	<br>
+	
+	<div class="form-group">
+			<label>Enter Payment Mode :</label>
+			<input type="text" class="form-control"  name="payment_mode" required>
+	</div>
+
+	
+	
+	<button type="submit" class="btn btn-default" name="submit" value="submit">SUBMIT!</button>
+	</form>
+	</div>
+	<div class="modal-footer" style="background-image: url('images/D.jpg');">
+	<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+<div id="removePaymentMode" class="modal fade" role="dialog">
+	<div class="modal-dialog" style="height:auto; width:auto">
+	<div class="modal-content">
+	<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title" style="color: white;">REMOVE OFFER</h4>
+	</div>
+	<div class="modal-body">
+	<br>
+				@each(p in paymentMode)	
+				<form action="/removePaymentMode/{{p._id}}" method="get">
+	
+					<li style="list-style:none">
+						<label>{{p.payment_mode}}</label>
+						<button type="submit" style="width:32px; height:22px; margin :0px" class="close"><span class="cust">
+						&times;</span></button>
+	
+						
+					</li>
+					</form>
+				@endeach
+	
+	</div>
+	<div class="modal-footer" style="background-image: url('images/D.jpg');">
+	<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+@endsection

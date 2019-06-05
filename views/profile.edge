@@ -1,0 +1,52 @@
+
+
+@layout('layouts.app')
+
+
+
+
+@section('content')
+<div class="general">
+<h2>Welcome {{authname}} !</h2><hr/>
+<h4> We warmly welcome you and eager to help you get the perfect mobile and accessories for you!</h4><br/>
+<h4>So, why waste time? Let's begin your <a href='productsPage'>shopping experience</a></h4>
+
+<br><br>
+<h4>Feel Free to contact us on Facebook, Instagram, Phone and Email.
+<br/><br/>
+Grab details <a href='/about'>here</a></h4>
+<br/>
+
+<h4>Your orders :</h4><br/>
+<table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Shipping address</th>
+            <th>Purchased items</th>
+            <th>Price</th>
+            <th>Total</th>
+           	<th></th>
+          </tr>
+        </thead>
+        <tbody>
+          	@each(o in onlineOrders)
+          	<tr>
+			<td>{{o.name}}</td>
+			<td>{{o.email}}</td>
+			<td>{{o.phone}}</td>
+			<td>{{o.address}}</td>
+			<td>{{o.itemsNames}}</td>
+			<td>{{o.itemsPrices}}</td>
+			<td>{{o.subtotal}}</td>
+			<td><form action="/deleteOnlineOrder/{{o._id}}" method="get"><button type="submit" class="btn btn-danger">Delete</button></form></td>
+			</tr>
+			@endeach
+        </tbody>
+      </table>
+
+
+</div>
+@endsection

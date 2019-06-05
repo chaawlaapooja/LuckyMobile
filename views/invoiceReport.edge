@@ -1,0 +1,165 @@
+@layout('layouts.app')
+
+@section('content')
+<div class="sidenav">
+			<li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-0"><i class="fa fa-fw fa-pencil"></i>Website Editing<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-0">
+                    <li style="padding-left:12px"><a href="/editHome"><i class="fa fa-fw fa-home"></i>Edit Home</a></li>
+                    <li style="padding-left:12px"><a href="/editProducts"><i class="fa fa-fw fa-cube"></i>Edit Products</a></li>
+           	        <li style="padding-left:12px"><a href="/editOffers"><i class="fa fa-fw fa-gift"></i>Edit Offers</a></li>
+                </ul>
+            </li>
+            <li style="list-style:none">
+                <a href="/onlineOrders"><i class="fa fa-fw fa-pencil"></i>Online orders<i class="fa fa-fw fa-angle-down"></i></a>
+            </li>
+            <li style="list-style:none">
+                <a href="/changeSectionAndPayment"><i class="fa fa-fw fa-pencil"></i>Edit Section & Payment<i class="fa fa-fw fa-angle-down"></i></a>
+            </li>
+            <li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-pencil"></i>Store Products<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-2">
+                    <li style="padding-left:12px"><a href="/addStoreProduct"><i class="fa fa-fw fa-plus"></i>Add Product</a></li>
+                    <li style="padding-left:12px"><a href="/changeProducts"><i class="fa fa-fw fa-times"></i>Edit/Delete Product</a></li>
+                </ul>
+            </li>
+            <li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-credit-card"></i>Invoice<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-1">
+                    <li style="padding-left:12px"><a href="/generateInvoice"><i class="fa fa-fw fa-calculator"></i>Generate Invoice</a></li>
+                    <li style="padding-left:12px"><a href="/seeInvoiceRecord"><i class="fa fa-fw fa-user"></i>See Invoice Record</a></li>
+                </ul>
+            </li>
+            <li style="list-style:none">
+                <a data-toggle="collapse" data-target="#submenu-3"><i class="fa fa-fw fa-bar-chart"></i>Reports<i class="fa fa-fw fa-angle-down"></i></a>
+                <ul id="submenu-3">
+                	<li style="padding-left:12px"><a href="/invoiceReport"><i class="fa fa-fw fa-calendar"></i>Invoice Report</a></li>
+                    <li style="padding-left:12px"><a href="/saleReport"><i class="fa 
+                    fa-fw fa-bar-chart"></i>Sales Report</a></li>
+                    <li style="padding-left:12px"><a href="/productsReport"><i class="fa fa-fw fa-product-hunt"></i>Products-Sale Report</a></li>
+                    <li style="padding-left:12px"><a href="/topProductsReport"><i class="fa fa-fw fa-sort-numeric-desc"></i>Top Products Report</a></li>
+                    <li style="padding-left:12px"><a href="/stockReport"><i class="fa fa-fw fa-tasks"></i>Stock Report</a></li>
+                </ul>
+            </li>
+</div>
+
+<div style="padding-left:30%; padding-right:2%">
+<br>
+<h2>Welcome  {{authname}}</h2><hr>
+<p>Get all the invoice records with their details<br><br>
+<div>
+<span class="pull-left">
+<label>Date From : </label><input type="date" id="dateFrom"/>
+</span>
+<span class="pull-right">
+<label>Date To : </label><input type="date" id="dateTo"/>
+</span>
+<br>
+</div><br>
+<input type="submit" class="btn btn-success" value="See Invoice Records" onclick="onSubmit()" />
+<span style="padding-left:5%"><input type="submit" style="background-color:#ff5063; color:white" class="printBtn" onclick="printJS({ printable: 'printJS-form', type: 'html',modalMessage: 'Retrieving Document...',targetStyles: ['*'],header: 'Invoice Report' })" class="btn btn-success" value="PRINT" hidden/></span>
+
+<br>
+<div id="printJS-form" class="bill" hidden>
+<img src="posts/shop_header.jpg" class="img-responsive"/>
+<div>
+<span class="pull-left"><label id="dateFromLabel"/></span>
+<span class="pull-right"><label id="dateToLabel"/></span>
+</div><hr>
+<table class="table table-striped table-bordered table-hover table-responsive " style="padding:20px" id="myTable">
+<div>
+<span class="pull-right"><label id="gt"/></span>
+</div>
+<tr class="info">
+<th>Sr.no</th>
+<th>Date</th>
+<th>Invoice Number</th>
+<th>Customer Name</th>
+<th>Customer Mobile</th>
+<th>Particulars</th>
+<th>Total</th>
+</tr>
+
+<tbody>
+
+</tbody>
+</table>
+</div>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</div>
+
+<br>
+<br><br><br><br><br><br>
+<script src="print.js"></script>
+<script>
+function onSubmit(){
+let invoiceRecords = document.querySelectorAll('.invoiceRow')
+invoiceRecords.forEach(function(invoiceRecord){
+	invoiceRecord.remove()
+})
+let dateFrom = document.querySelector('#dateFrom').value
+let dateTo = document.querySelector('#dateTo').value
+if(dateFrom==='' || dateTo===''){
+	document.querySelector('#printJS-form').hidden=true
+	document.querySelector('.printBtn').hidden=true
+	window.alert('Please enter valid dates')
+}
+else if(dateFrom>dateTo){
+	document.querySelector('#printJS-form').hidden=true
+	document.querySelector('.printBtn').hidden=true
+	window.alert('Date from should be before than or Date to')
+}
+else{
+	fetch('fetchInvoiceReport', {
+		     method: 'POST',
+		     body: JSON.stringify({dateFrom, dateTo}),
+		     headers: {
+		 	    'Content-Type': 'application/json'
+		 	},
+		 })
+		 .then(res => res.json())
+		 .then(res => {
+		 if(res==='NotFound')
+		 	window.alert('No records found from '+dateFrom+' to '+dateTo)
+		 else{
+		 	document.querySelector('.printBtn').hidden=false
+		 	document.querySelector('#printJS-form').hidden=false
+			for(var i=0; i<res.length; i++){
+		 			var table = document.getElementById("myTable");
+
+					var row = table.insertRow(-1);
+					row.className='invoiceRow'
+
+					var cell1 = row.insertCell(0);
+					var cell2 = row.insertCell(1);
+					var cell3 = row.insertCell(2);
+					var cell4 = row.insertCell(3);
+					var cell5 = row.insertCell(4);
+					var cell6 = row.insertCell(5);
+					var cell7 = row.insertCell(6);
+					cell7.className='total'
+                    
+					
+					cell1.innerHTML = i+1
+					cell2.innerHTML = res[i].invoiceDate.toString().substring(0,10);
+					cell3.innerHTML = res[i].invoiceNumber
+					cell4.innerHTML = res[i].customerName
+					cell5.innerHTML = res[i].customerMobile 
+					cell6.innerHTML = res[i].boughtProductsName.toString()+'<br>Amount : ['+res[i].boughtProductsPrice+']'
+					cell7.innerHTML = res[i].grandTotal
+		 		}
+		 		document.querySelector('#dateFromLabel').innerHTML='From : '+dateFrom+' '
+		 	document.querySelector('#dateToLabel').innerHTML=' To : '+dateTo
+		 		let amountValues=document.querySelectorAll('.total')
+            let totalAmount=0
+            for(var i=0; i<amountValues.length; i++){
+                totalAmount=totalAmount+parseInt(amountValues[i].innerHTML)
+            }
+            document.querySelector('#gt').innerHTML='Grand Total : Rs.'+(totalAmount)
+
+		 }
+		 })
+}
+}
+</script>
+@endsection

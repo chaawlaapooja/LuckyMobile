@@ -1,0 +1,424 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Lucky Mobile</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Lucky mobile, Lucky Mobile, Lucky mobiles, mobile, mobiles, mobile shoppee, lucky mobiles sangli, lucky mobile sangli, lucky, Accessories, accessories, headphones, screenguards, sangli, mobile case, mobile cover, mobile covers, mobile cases, Electronic Store ,Mobile Shoppee, e-commerce electronic store, Nokia, Oppo, Vivo, Samsung, LG, Motorola" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+	function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<!-- Custom Theme files -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/fasthover.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+<link rel = "icon" href =  
+"posts/shop_logo.png" 
+        type = "image/x-icon" sizes="32x32"> 
+<!-- //Custom Theme files -->
+<!-- font-awesome icons -->
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+<!-- js -->
+<script src="js/jquery.min.js"></script>
+<link rel="stylesheet" href="css/jquery.countdown.css" /> <!-- countdown --> 
+<!-- //js -->  
+<!-- web fonts --> 
+<link href='//fonts.googleapis.com/css?family=Glegoo:400,700' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<!-- //web fonts -->  
+<!-- start-smooth-scrolling -->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- //end-smooth-scrolling --> 
+
+
+
+
+<style>
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 80px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+
+
+
+</head> 
+<body>
+	<!-- for bootstrap working -->
+	<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
+	
+	<!-- //for bootstrap working -->
+	<!-- header modal -->
+
+
+	
+	
+
+	
+
+	
+	
+
+	<!-- header modal -->
+	<!-- header -->
+	<div class="header" id="home1">
+		<div class="container">
+			<div class="w3l_login">
+				<div class="dropdown">
+<button onclick="myFunction()" class="dropbtn"><span class="glyphicon glyphicon-user"></span></button>
+  <div id="myDropdown" class="dropdown-content">
+  	@if(!authid)
+    <a data-toggle="modal" href="#signin_form">Login</a>
+    <a data-toggle="modal" href="#signup_form">Register</a>
+    @endif
+    @if(authid) 
+    	@if(authname===('ADMIN-PREM@1234'))
+  			<a href="/adminPanel">Profile</a>
+  		@else	
+    	<a href="/profile">Profile</a>
+    	@endif
+    <a href="/logout">Logout</a>
+    @endif
+  </div>
+  </div>
+</div>
+
+
+	<!--SIGNIN FORM-->
+<div id="signin_form" class="modal fade" role="dialog">
+<div class="modal-dialog" style="height:auto; width:auto">
+<div class="modal-content">
+<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4 class="modal-title" style="color: white;">SIGN IN</h4>
+</div>
+<div class="modal-body">
+<form action="/login" method="post" enctype="multipart/form-data">
+<div class="form-group">
+<br>
+<input type="text" class="form-control" placeholder="ENTER YOUR EMAIL" name="email" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED."  required>
+</div>
+<div class="form-group">
+<input type="password" class="form-control" placeholder="ENTER YOUR PASSWORD" name="password" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED."  required>
+</div>
+<button type="submit" class="btn btn-default" name="submit" value="submit">SIGN IN!</button>
+</form>
+</div>
+<div class="modal-footer" style="background-image: url('images/D.jpg');">
+<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+</div>
+</div>
+</div>
+</div>
+			
+	<!--SIGNUP FORM-->
+<div id="signup_form" class="modal fade" role="dialog">
+	<div class="modal-dialog" style="height:auto; width:auto">
+		<div class="modal-content">
+			<div class="modal-header" style="background-image: url('images/D.jpg'); color: white;">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title" style="color: white;">SIGN UP</h4>
+			</div>
+			<div class="modal-body">
+
+			
+			
+			<form action="/registerUser" method="post" enctype="multipart/form-data">
+			<div class="form-group">
+			<br>
+			<input type="text" class="form-control" placeholder="WE WOULD LIKE TO KNOW YOUR NAME" name="name" title="ENTER ALPHABETS. SPECIAL SYMBOLS AND NUMBERS ARE PROHIBITED." pattern="[A-Za-z]{2,15}" required>
+			</div>
+			
+			<div class="form-group">
+			<input type="email" class="form-control" placeholder="ENTER YOUR WORKING EMAIL" name="email" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<div class="form-group">
+			<input type="password" class="form-control" placeholder="SET A PASSWORD" name="password" title="ENTER ALPHABETS AND NUMBERS. SPECIAL SYMBOLS ARE PROHIBITED." required>
+			</div>
+			<button type="submit" class="btn btn-default" name="submit" value="submit">SIGN UP!</button>
+			</form>
+			</div>
+			<div class="modal-footer" style="background-image: url('images/D.jpg');">
+			<button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+			
+				
+			
+			<div class="w3l_logo">
+				<h1><a href="/"><img src=  
+"posts/shop_logo.png" alt="" height="40" width="40"/> LUCKY MOBILE<span>Your store. Your place.</span></a></h1>
+			</div>
+			
+			<div class="cart cart box_1"> 
+				<form action="#" method="post" class="last"> 
+					<input type="hidden" name="cmd" value="_cart" />
+					<input type="hidden" name="display" value="1" />
+					<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+				</form>   
+			</div>  
+		</div>
+	</div>
+
+	<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+
+
+function myFunction() {
+
+    document.getElementById("myDropdown").classList.toggle("show");
+
+
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
+
+
+	<!-- //header -->
+	<!-- navigation -->
+	<div class="navigation">
+		<div class="container">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header nav_2">
+					<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div> 
+				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+					<ul class="nav navbar-nav">
+
+						<li><a href="/">Home</a></li>	
+						<!-- Mega Menu -->
+						<li class="dropdown">
+							<a href="/offers" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
+							<ul class="dropdown-menu multi-column columns-3">
+								<div class="row">
+									<div class="col-sm-3">
+										<ul class="multi-column-dropdown">
+											<h6>Mobiles</h6>
+											<li><a href="/productsPage">Mobile Phones</a></li>
+											 
+											
+											<li><a href="/productsPage">Tablets<span>New</span></a></li>
+										</ul>
+									</div>
+									<div class="col-sm-3">
+										<ul class="multi-column-dropdown">
+											<h6>Accessories</h6>
+											<li><a href="/productsPage">Screenguards</a></li>
+											<li><a href="/productsPage">Headphones</a></li>
+											<li><a href="/productsPage">Wearables <span>New</span></a></li>
+											<li><a href="/productsPage"><i>Shop Now</i></a></li>
+										</ul>
+									</div>
+									
+									<div class="col-sm-4">
+										<div class="w3ls_products_pos">
+											<h4>{{dis}}%<i>Off/-</i></h4>
+											<a href="/productsPage"><img src="images/cover4.jpg" alt=" " class="img-responsive" /></a>
+										</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</ul>
+						</li>
+						<li><a href="/compare">Compare</a></li> 
+						<li><a href="/offers">Offers</a></li> 
+						
+						<li><a href="/about">About us</a></li>
+					<!--<li><a href="/newpost">New Post</a></li>-->
+					
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
+	<!-- //navigation -->
+	
+	@!section('content')
+	
+
+	<!-- newsletter -->
+	<div class="newsletter">
+		<div class="container">
+			<div class="col-md-6 w3agile_newsletter_left">
+				<h3>Newsletter</h3>
+				<p>Be the first to know our offers by dropping your email address.</p>
+			</div>
+			<div class="col-md-6 w3agile_newsletter_right">
+				<!-- Begin Mailchimp Signup Form -->
+					<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+
+
+					<form action="https://facebook.us19.list-manage.com/subscribe/post?u=034c4e38a7de1113211e9d286&amp;id=1a2b312898" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+					    
+						<input type="email" name="EMAIL" placeholder="Email" required="">
+						<input type="submit" value="" name="subscribe">
+						
+					</form>
+					     
+				<!--End mc_embed_signup-->
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<!-- //newsletter -->
+	<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="w3_footer_grids">
+				<div class="col-md-3 w3_footer_grid">
+					<h3>Contact</h3>
+					<h4><p><img src=  
+"posts/shop_logo.png" height="30" width="30" alt=""/>Lucky Mobile</p></h4>
+					<ul class="address">
+						<li><a href="https://www.google.co.in/maps/place/Lucky+Mobile+shop/@16.8529224,74.5641821,15z/data=!4m8!1m2!2m1!1slucky+mobile+sangli!3m4!1s0x3bc1184724e90a6f:0x1ff3c308e86fdd60!8m2!3d16.8602003!4d74.5629263" target="_blank"><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Harbhat road, Near Chandan Steel Center, Sangli City.</a></li>
+						<li><a href="mailto:luckymobile903@gmail.com"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
+						luckymobile903@gmail.com</a></li>
+						<li><a href="tel:+918600165860"><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+91 8600 165 860</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 w3_footer_grid">
+					<h3>Information</h3>
+					<ul class="info"> 
+						<li><a href="/about">About Us</a></li>
+						<li><a href="tel:+918600165860">Contact Us</a></li>
+						<li><a href="/productsPage">Special Products</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 w3_footer_grid">
+					<h3>Category</h3>
+					<ul class="info"> 
+						<li><a href="/productsPage">Mobiles</a></li>
+						<li><a href="/productsPage">Accessories</a></li>
+						</ul><ul>
+						<li><a href="/productsPage">Screenguards</a></li>
+
+						<li><a href="/productsPage">Headphones</a></li>
+
+						<li><a href="/productsPage">Data cables</a></li>
+						<li><a href="/productsPage">Wearables</a></li>
+						</ul>
+					</ul>
+				</div>
+				<div class="col-md-3 w3_footer_grid">
+					<h3>Profile</h3>
+					<ul class="info"> 
+						<li><a href="/">Home</a></li>
+						<li><a href="/productsPage">Today's Deals</a></li>
+					</ul>
+					<h4>Follow Us</h4>
+					<div class="agileits_social_button">
+						<ul>
+							<li><a href="https://www.google.co.in/maps/place/Lucky+Mobile+shop/@16.8529224,74.5641821,15z/data=!4m8!1m2!2m1!1slucky+mobile+sangli!3m4!1s0x3bc1184724e90a6f:0x1ff3c308e86fdd60!8m2!3d16.8602003!4d74.5629263" target="_blank" class="google"> </a></li>
+							<li><a href="https://www.facebook.com/Lucky-Mobile-286546265152987/" target="_blank" class="face"> </a></li>
+							<li><a href="https://www.instagram.com/mobilelucky/" target="_blank" class="instagram"> </a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+		<div class="footer-copy">
+			<div class="footer-copy1">
+				<div class="footer-copy-pos">
+					<a href="#home1" class="scroll"><img src="images/arrow.png" alt=" " class="img-responsive" /></a>
+				</div>
+			</div>
+			<div class="container">
+				<p>&copy; 2017 Lucky Mobile. All rights reserved </p>
+			</div>
+		</div>
+	</div>
+	<!-- //footer --> 
+	<!-- cart-js -->
+	<script src="js/minicart.js"></script>
+	<script>
+        w3ls.render();
+
+        w3ls.cart.on('w3sb_checkout', function (evt) {
+        	var items, len, i;
+
+        	if (this.subtotal() > 0) {
+        		items = this.items();
+
+        		for (i = 0, len = items.length; i < len; i++) { 
+        		}
+        	}
+        });
+    </script>  
+	<!-- //cart-js -->   
+</body>
+</html>

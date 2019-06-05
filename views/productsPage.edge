@@ -1,0 +1,283 @@
+@layout('layouts.app')
+
+@section('content')
+<style>
+	ul.shopList {
+	  list-style-type: none;
+	  padding: 0;
+	  margin: 0 auto;
+	  
+	  position: relative;
+	}
+	/* responsive mobile */
+	@media (max-width: 991.5px) {
+	  ul.shopList {
+	    width: 100%;
+	    }
+	}
+
+	.listItem {
+	  cursor: pointer;
+	  background: #3c43a4;
+	  color: #fff;
+	  text-align: left;
+	  padding: 8px 5px;
+	  font-weight: bold;
+	  margin-bottom: 2px;
+	  border-radius: 5px;
+
+	}
+
+	.listItem1 {
+	  cursor: pointer;
+	  background: #fb7960;
+	  color: #fff;
+	  text-align: left;
+	  padding: 8px 5px;
+	  font-weight: bold;
+	  margin-bottom: 2px;
+	  border-radius: 5px;
+	  width:80%;
+	  
+	}
+
+	.listItem1:nth-child(even) {
+	  background: #e85d45;
+	  width:80%;
+	}
+
+	.row-wrap{
+		display: flex;
+    flex-flow:row wrap
+	}
+	.reverse{
+		display: flex;
+	    flex-flow:row-reverse wrap-reverse;
+	}
+	
+</style>
+
+
+
+<div class="mobiles">
+		<div class="container">
+			<div class="w3ls_mobiles_grids">
+				<div class="col-md-4 w3ls_mobiles_grid_left">
+
+				<div class="w3ls_mobiles_grid_left_grid">
+						<h3>Filters</h3>
+						<div class="w3ls_mobiles_grid_left_grid_sub">
+							
+							<div class="ecommerce_color ecommerce_size">
+								<input type="submit" value="Clear All Filters" class="listItem" name="mybutton">
+								<ul class="shopList">
+								
+									Price :<ul class="shopList1"></ul>
+
+									Brand : <ul class="shopList3"></ul>
+										
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="w3ls_mobiles_grid_left_grid">
+						<h3>Categories</h3>
+						<div class="w3ls_mobiles_grid_left_grid_sub">
+							<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+					
+							  <div class="panel panel-default">
+								<div class="panel-heading" role="tab" id="headingOne">
+								  <h4 class="panel-title asd">
+									<a class="pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+									  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>Price
+									</a>
+								  </h4>
+								</div>
+								<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+								  <div class="panel-body panel_text">
+									<ul >
+										<li><input type="checkbox" class="one" name="below5" value="0-5000" onchange="myPriceFunc(this.checked,this.value)">  Below 5000 </li>
+										<li><input type="checkbox" class="one" name="bet5-10" value="5000-9999" onchange="myPriceFunc(this.checked,this.value)"> 5000-9999  </li>
+										<li><input type="checkbox" class="one" name="bet10-15" value="10000-14999" onchange="myPriceFunc(this.checked,this.value)"> 10000-14999  </li>
+										<li><input type="checkbox" class="one" name="bet15-20" value="15000-19999" onchange="myPriceFunc(this.checked,this.value)"> 15000-19999</li>
+										<li><input type="checkbox" class="one" name="bet20-25" value="20000-24999" onchange="myPriceFunc(this.checked,this.value)">  20000-24999</li>
+										<li><input type="checkbox" class="one" name="above25" value="25000-150000" onchange="myPriceFunc(this.checked,this.value)">  25000 and above </li>
+									</ul>
+								  </div>
+								</div>
+							  </div>
+
+
+
+							  <div class="panel panel-default">
+								<div class="panel-heading" role="tab" id="headingThree">
+								  <h4 class="panel-title asd">
+									<a class="pa_italic collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+									  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>Brand
+									</a>
+								  </h4>
+								</div>
+								<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+								   <div class="panel-body panel_text">
+									<ul>
+										@each(b in brands)
+										<li><input type="checkbox" class="three"  name="brand" value="{{b.name}}" onchange="myFunc(this.checked,this.value)"> {{b.name}}  </li>
+										@endeach
+										
+									</ul>
+								  </div>
+								</div>
+							  </div>
+
+
+							</div>
+							<ul class="panel_bottom">
+								
+								<li><a href="/productsPage">Featured Brands</a></li>
+								<li><a href="/offers">Today's Deals</a></li>
+								
+							</ul>
+						</div>
+					</div>
+					<!--<div class="w3ls_mobiles_grid_left_grid">
+						<h3>Color</h3>
+						<div class="w3ls_mobiles_grid_left_grid_sub">
+							<div class="ecommerce_color">
+								<ul>
+									<li><a href="#"><i></i> Red(5)</a></li>
+									<li><a href="#"><i></i> Brown(2)</a></li>
+									<li><a href="#"><i></i> Yellow(3)</a></li>
+									<li><a href="#"><i></i> Violet(6)</a></li>
+									<li><a href="#"><i></i> Orange(2)</a></li>
+									<li><a href="#"><i></i> Blue(1)</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>-->
+									</div>
+				<div class="col-md-8 w3ls_mobiles_grid_right">
+					<div class="col-md-6 w3ls_mobiles_grid_right_left">
+						<div class="w3ls_mobiles_grid_right_grid1">
+							<img src="images/cover4.jpg" alt=" " class="img-responsive" />
+							<div class="w3ls_mobiles_grid_right_grid1_pos1">
+								<h3>Smart Phones<span>Up To</span> {{dis}}% Discount</h3>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 w3ls_mobiles_grid_right_left">
+						<div class="w3ls_mobiles_grid_right_grid1">
+							<img src="images/47.jpg" alt=" " class="img-responsive" />
+							<div class="w3ls_mobiles_grid_right_grid1_pos">
+								<h3>Latest<span>Mobile </span>& Accessories</h3>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+
+					<div class="w3ls_mobiles_grid_right_grid2">
+						<div class="w3ls_mobiles_grid_right_grid2_left">
+							<h3>Showing Results: -</h3>
+						</div>
+						<div class="w3ls_mobiles_grid_right_grid2_right">
+							<select name="select_item" class="select_item" onchange="SortChange()">
+								<option selected="selected">Sort by price: high to low</option>
+								<option>Sort by price: low to high</option>
+							</select>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="w3ls_mobiles_grid_right_grid3 row-wrap">
+						@each(p in pr)
+						<div class="col-md-4 agileinfo_new_products_grid agileinfo_new_products_grid_mobiles">
+							<div class="agile_ecommerce_tab_left mobiles_grid">
+								<div class="hs-wrapper hs-wrapper2">
+									<img src="{{p.cover}}" alt={{p.model}} class="img-responsive" />
+									<img src="{{p.first}}" alt={{p.model}} class="img-responsive" />
+									<img src="{{p.second}}" alt={{p.model}} class="img-responsive" />
+									<img src="{{p.third}}" alt={{p.model}} class="img-responsive" />
+									<div class="w3_hs_bottom w3_hs_bottom_sub1">
+										<ul>
+											<li>
+												<a href="#" data-toggle="modal" data-target="#myProductModal{{p.id}}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<h5><a>{{p.brand}} - {{p.model}}</a></h5> 
+								<form action='/productDetails' method='post'>
+									<input type="hidden" name="pid" value={{p._id}} />
+									<div style="padding-top:3%"><input type="submit" class='btn btn-success' value='See Details' /></div>
+								</form>
+								<div class="simpleCart_shelfItem">
+									<p><span>Rs.{{p.marketPrice}}</span> <i class="item_price">Rs.{{p.price}}</i></p>
+									<form action="#" method="post">
+										<input type="hidden" name="cmd" value="_cart" />
+										<input type="hidden" name="add" value="1" /> 
+										<input type="hidden" name="w3ls_item" value="{{p.model}}" /> 
+										<input type="hidden" name="amount" value="{{p.price}}"/>   
+										<button type="submit" class="w3ls-cart">Add to cart</button><hr>
+									</form>
+								</div> 
+								<!--<div class="mobiles_grid_pos">
+									<h6>New</h6>
+								</div>-->
+							</div>
+						</div>
+						@endeach
+						
+						<div class="clearfix"> </div>
+
+					</div>
+					
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+</div>  
+
+@each(p in pr)
+	<div class="modal video-modal fade" id="myProductModal{{p.id}}" tabindex="-1" role="dialog" aria-labelledby="myProductModal{{p.id}}">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+				</div>
+				<section>
+					<div class="modal-body">
+						<div class="col-md-5 modal_body_left">
+							<img src="{{p.cover}}" alt={{p.model}} class="img-responsive" />
+						</div>
+						<div class="col-md-7 modal_body_right">
+							<h4>{{p.model}}</h4>
+							<p>{{p.description}}</p>
+							<label>RAM :    </label>  {{p.ram}}GB<br>
+							<label>Internal Storage :    </label>  {{p.internalStorage}}GB<br>
+							<label>Primary Camera :    </label>  {{p.primaryCamera}}PX<br>
+							<label>Secondary Camera :    </label>  {{p.secondaryCamera}}PX<br>
+							<label>Battery :    </label>  {{p.batteryCapacity}}mAH<br>
+							<label>Screen Size :    </label>  {{p.screenSize}}inch<br>
+							<label>Sim Type :    </label>  {{p.simType}}<br><br>
+							
+							<div class="modal_body_right_cart simpleCart_shelfItem">
+								<p><span>Rs.{{p.marketPrice}}</span> <i class="">Rs.{{p.price}}</i></p>
+								<form action="#" method="post">
+									<input type="hidden" name="cmd" value="_cart">
+									<input type="hidden" name="add" value="1"> 
+									<input type="hidden" name="w3ls_item" value="{{p.model}}"> 
+									<input type="hidden" name="amount" value="{{p.price}}">   
+									<button type="submit" class="w3ls-cart">Add to cart</button>
+								</form>
+							</div>
+							
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+@endeach
+
+<script src="productsjs.js">
+</script>
+@endsection

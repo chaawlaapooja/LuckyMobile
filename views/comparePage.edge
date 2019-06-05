@@ -1,0 +1,145 @@
+@layout('layouts.app')
+
+@section('content')
+<br/>
+<div class='container-fluid'>
+<table id="t1" class="table table-extra-condensed table-bordered table-striped table-hover">
+      <thead>
+      <tr>
+      <td></td>
+      <td><img id="imgm1" class="img-responsive" src='https://mykarateamerica.com/wp-content/uploads/2017/04/default-image.jpg' />
+      </td>
+      <td><img id="imgm2" src='https://mykarateamerica.com/wp-content/uploads/2017/04/default-image.jpg' class="img-responsive"/>
+      </td>
+      <td><img id="imgm3" src='https://mykarateamerica.com/wp-content/uploads/2017/04/default-image.jpg' class="img-responsive"/>
+      </td>
+      <td><img id="imgm4" src='https://mykarateamerica.com/wp-content/uploads/2017/04/default-image.jpg' class="img-responsive"/>
+      </td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="warning">
+      <td><h4>Model</h4></td>
+      	<td>
+	      	<select id="m1" class="form-control" onchange="onChange(this.id, this.value)">
+	      	<option></option>
+	      	@each(p in pr)
+			<option value={{p._id}}>{{p.brand}} - {{p.model}}</option>
+			@endeach			
+			</select>
+		</td>
+		<td>
+	      	<select id="m2" class="form-control" onchange="onChange(this.id, this.value)">
+	      	<option></option>
+	      	@each(p in pr)
+			<option value={{p._id}}>{{p.brand}} - {{p.model}}</option>
+			@endeach			
+			</select>
+		</td>
+		<td>
+	      	<select id="m3" class="form-control" onchange="onChange(this.id, this.value)">
+	      	<option></option>
+	      	@each(p in pr)
+			<option value={{p._id}}>{{p.brand}} - {{p.model}}</option>
+			@endeach			
+			</select>
+		</td>
+		<td>
+	      	<select id="m4" class="form-control" onchange="onChange(this.id, this.value)">
+	      	<option></option>
+	      	@each(p in pr)
+			<option value={{p._id}}>{{p.brand}} - {{p.model}}</option>
+			@endeach			
+			</select>
+		</td>
+      </tr>
+      <tr class="success">
+      	<td><h4>Market Price vs Our Price</h4></td>
+      	<td id='pricem1'></td>
+      	<td id='pricem2'></td>
+      	<td id='pricem3'></td>
+      	<td id='pricem4'></td>
+      </tr>
+      <tr class="warning">
+      	<td><h4>Phone Type</h4></td>
+      	<td id='ptm1'></td>
+      	<td id='ptm2'></td>
+      	<td id='ptm3'></td>
+      	<td id='ptm4'></td>
+      </tr>
+      <tr class="success">
+      	<td><h4>RAM</h4></td>
+      	<td id='ramm1'></td>
+      	<td id='ramm2'></td>
+      	<td id='ramm3'></td>
+      	<td id='ramm4'></td>
+      </tr>
+      <tr class="warning">
+      	<td><h4>Internal Storage</h4></td>
+      	<td id='ism1'></td>
+      	<td id='ism2'></td>
+      	<td id='ism3'></td>
+      	<td id='ism4'></td>
+      </tr>
+      <tr class="success">
+      	<td><h4>Primary Camera</h4></td>
+      	<td id='pcm1'></td>
+      	<td id='pcm2'></td>
+      	<td id='pcm3'></td>
+      	<td id='pcm4'></td>
+      </tr>
+      <tr class="warning">
+      	<td><h4>Secondary Camera</h4></td>
+      	<td id='scm1'></td>
+      	<td id='scm2'></td>
+      	<td id='scm3'></td>
+      	<td id='scm4'></td>
+      </tr>
+      <tr class="success">
+      	<td><h4>Battery Capacity</h4></td>
+      	<td id='bcm1'></td>
+      	<td id='bcm2'></td>
+      	<td id='bcm3'></td>
+      	<td id='bcm4'></td>
+      </tr>
+      <tr class="warning">
+      	<td><h4>Screen Size</h4></td>
+      	<td id='szm1'></td>
+      	<td id='szm2'></td>
+      	<td id='szm3'></td>
+      	<td id='szm4'></td>
+      </tr>
+      <tr class="success">
+      	<td><h4>Sim Type</h4></td>
+      	<td id='stm1'></td>
+      	<td id='stm2'></td>
+      	<td id='stm3'></td>
+      	<td id='stm4'></td>
+      </tr>
+      <tr class="warning">
+      	<td><h4>Offers</h4></td>
+      	<td id='om1'></td>
+      	<td id='om2'></td>
+      	<td id='om3'></td>
+      	<td id='om4'></td>
+      </tr>
+      <tr class="success">
+      	<td><h4>Features</h4></td>
+      	<td id='fm1'></td>
+      	<td id='fm2'></td>
+      	<td id='fm3'></td>
+      	<td id='fm4'></td>
+      </tr>
+      <tr class="warning">
+            <td><h4>Description</h4></td>
+            <td id='dm1'></td>
+            <td id='dm2'></td>
+            <td id='dm3'></td>
+            <td id='dm4'></td>
+      </tr>
+      </tbody>
+      </table>
+</div>
+<script src="compare.js">
+</script>
+@endsection
