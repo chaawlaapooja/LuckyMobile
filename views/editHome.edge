@@ -2208,7 +2208,7 @@
 				@each(b in brands)	
 				<form action="/removeBrand/{{b._id}}" method="get" enctype="multipart/form-data">
 					<li style="list-style:square">
-						{{b.name}} <img src={{b.image}} height="100" width="100" alt={{b.name}}>
+						<img src={{b.image}} style="height:100px; width:100px; padding:5px" alt={{b.name}}> {{b.name}} 
 						<button type="submit" style="width:32px; height:22px; margin :0px" class="close"><span class="cust">
 						&times;</span></button>
 					</li>
