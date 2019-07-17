@@ -6,7 +6,7 @@
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Lucky mobile, Lucky Mobile, Lucky mobiles, mobile, mobiles, mobile shoppee, lucky mobiles sangli, lucky mobile sangli, lucky, Accessories, accessories, headphones, screenguards, sangli, mobile case, mobile cover, mobile covers, mobile cases, Electronic Store ,Mobile Shoppee, e-commerce electronic store, Nokia, Oppo, Vivo, Samsung, LG, Motorola" />
+<meta name="keywords" content="Lucky mobile, Lucky Mobile, Lucky mobiles, mobile, mobiles, mobile shoppee, lucky mobiles sangli, lucky mobile sangli, lucky, Accessories, accessories, headphones, screenguards, sangli, mobile case, mobile cover, mobile covers, mobile cases, Electronic Store ,Mobile Shoppee, e-commerce electronic store, Nokia, Oppo, Vivo, MI, Redmi, Realme, mobile shop in sangli, Samsung, LG, Motorola" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 	function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
@@ -45,44 +45,12 @@
 
 
 <style>
-.dropbtn {
-    background-color: #3498DB;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
+.dropdown:hover{
+	cursor: pointer;
 }
-
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
+#signup:hover, #logout:hover{
+	background-color: #46b8da
 }
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 80px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown a:hover {background-color: #ddd;}
-
-.show {display: block;}
 </style>
 
 
@@ -94,38 +62,34 @@
 	
 	<!-- //for bootstrap working -->
 	<!-- header modal -->
-
-
-	
-	
-
-	
-
-	
-	
-
 	<!-- header modal -->
 	<!-- header -->
 	<div class="header" id="home1">
 		<div class="container">
 			<div class="w3l_login">
-				<div class="dropdown">
-<button onclick="myFunction()" class="dropbtn"><span class="glyphicon glyphicon-user"></span></button>
-  <div id="myDropdown" class="dropdown-content">
-  	@if(!authid)
-    <a data-toggle="modal" href="#signin_form">Login</a>
-    <a data-toggle="modal" href="#signup_form">Register</a>
-    @endif
-    @if(authid) 
-    	@if(authname===('ADMIN-PREM@1234'))
-  			<a href="/adminPanel">Profile</a>
-  		@else	
-    	<a href="/profile">Profile</a>
-    	@endif
-    <a href="/logout">Logout</a>
-    @endif
-  </div>
-  </div>
+			<li class="dropdown" style="list-style: none;" >
+	        <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user">
+	        <span class="caret"></span></span></a>
+			<ul class="dropdown-menu">
+				@if(!authid)
+				<li><a class='btn btn-warning' style="width: auto;padding: 7%;text-transform: uppercase;font-weight: bold;font-size: medium; background-color: #dcdcdc"  data-toggle="modal" href="#signin_form">Login</a>
+				</li>
+		        <li><a id='signup' style="width: auto;padding: 7%;text-transform: uppercase;font-weight: bold;font-size: medium;" class='btn btn-info' data-toggle="modal" href="#signup_form">Register</a>
+		        </li>
+		        @endif
+		        @if(authid) 
+			    	@if(authname===('ADMIN-PREM@1234'))
+			  			<li><a class='btn btn-warning' style="width: auto;padding: 7%;text-transform: uppercase;font-weight: bold;font-size: medium; background-color: #dcdcdc"  href="/adminPanel">Profile</a>
+						</li>
+			  		@else	
+			    	<li><a class='btn btn-warning' style="width: auto;padding: 7%;text-transform: uppercase;font-weight: bold;font-size: medium; background-color: #dcdcdc"  href="/profile">Profile</a>
+						</li>
+			    	@endif
+			    <li><a class='btn btn-info' id='logout' style="width: auto;padding: 7%;text-transform: uppercase;font-weight: bold;font-size: medium;"  href="/logout">Logout</a>
+						</li>
+			    @endif
+        	</ul>
+        	</li>
 </div>
 
 
@@ -199,7 +163,7 @@
 			
 			<div class="w3l_logo">
 				<h1><a href="/"><img src=  
-"posts/shop_logo.png" alt="" height="40" width="40"/> LUCKY MOBILE<span>Your store. Your place.</span></a></h1>
+"posts/shop_logo.png" alt="" height="40" width="40"/> LUCKY MOBILE<span style="letter-spacing: 2px;font-weight: bolder;">Harbhat road, Near Chandan Steel Center, Sangli.</a></span></a></h1>
 			</div>
 			
 			<div class="cart cart box_1"> 
@@ -216,13 +180,6 @@
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 
-
-function myFunction() {
-
-    document.getElementById("myDropdown").classList.toggle("show");
-
-
-}
 
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
