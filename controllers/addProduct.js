@@ -34,7 +34,7 @@ module.exports = (req, res) => {
                       res.redirect('/error')
 	 								product.create({...req.body, cover:cover_result.secure_url, first:first_result.secure_url, second:second_result.secure_url, third:third_result.secure_url}, (error, product)=>{
                   	if(error){res.redirect('/error')}
-                  	res.redirect('/productsPage')
+                  	res.redirect('/editProducts')
                   })
                 	 							})
                 	    					})
