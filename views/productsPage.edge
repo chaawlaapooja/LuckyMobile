@@ -250,11 +250,11 @@
 						<div class="col-md-7 modal_body_right">
 							<h4>{{p.model}}</h4>
 							<p>{{p.description}}</p>
-							
+							<label>RAM :    </label>
 							@if({{p.ram===0}})
-							<label>RAM :    </label> NA 
+							 NA 
 							@else
-							<label>RAM :    </label>  {{p.ram}}GB
+							{{p.ram}}GB
 							@endif
 							<br>
 							<label>Internal Storage :    </label>  {{p.internalStorage}}GB<br>
@@ -271,7 +271,7 @@
 									<input type="hidden" name="add" value="1"> 
 									<input type="hidden" name="w3ls_item" value="{{p.model}}"> 
 									<input type="hidden" name="amount" value="{{p.price}}">   
-									<button type="submit" class="w3ls-cart">Add to cart</button>
+									<button type="submit" class="w3ls-cart btn btn-success">Add to cart</button>
 								</form>
 							</div>
 							
