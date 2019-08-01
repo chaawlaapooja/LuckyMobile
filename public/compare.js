@@ -132,7 +132,7 @@ function onChange(id, val){
 			img.src=res[0].cover
 			img.alt=res[0].model
 			let price = document.querySelector('#pricem1');
-			price.innerHTML='<label><strike>'+res[0].marketPrice+'</strike><br/>'+res[0].price+'</label>'
+			price.innerHTML='<label><strike>Rs.'+res[0].marketPrice+'</strike><br/>Rs.'+res[0].price+'</label>'
 		 	let ram = document.querySelector('#ramm1');
 		 	ram.innerHTML='<label>'+res[0].ram+' GB</label>';
 		 	let internalStorage = document.querySelector('#ism1');
@@ -172,7 +172,7 @@ function onChange(id, val){
 			img.src=res[0].cover
 			img.alt=res[0].model
 			let price = document.querySelector('#pricem2');
-			price.innerHTML='<label><strike>'+res[0].marketPrice+'</strike><br/>'+res[0].price+'</label>'
+			price.innerHTML='<label><strike>Rs.'+res[0].marketPrice+'</strike><br/>Rs.'+res[0].price+'</label>'
 		 	let ram = document.querySelector('#ramm2');
 		 	ram.innerHTML='<label>'+res[0].ram+' GB</label>'
 		 	let internalStorage = document.querySelector('#ism2');
@@ -213,7 +213,7 @@ function onChange(id, val){
 			img.src=res[0].cover
 			img.alt=res[0].model
 			let price = document.querySelector('#pricem3');
-			price.innerHTML='<label><strike>'+res[0].marketPrice+'</strike><br/>'+res[0].price+'</label>'
+			price.innerHTML='<label><strike>Rs.'+res[0].marketPrice+'</strike><br/>Rs.'+res[0].price+'</label>'
 		 	let ram = document.querySelector('#ramm3');
 		 	ram.innerHTML='<label>'+res[0].ram+' GB</label>'
 		 	let internalStorage = document.querySelector('#ism3');
@@ -254,7 +254,7 @@ function onChange(id, val){
 			img.src=res[0].cover
 			img.alt=res[0].model
 			let price = document.querySelector('#pricem4');
-			price.innerHTML='<label><strike>'+res[0].marketPrice+'</strike><br/>'+res[0].price+'</label>'
+			price.innerHTML='<label><strike>Rs.'+res[0].marketPrice+'</strike><br/>Rs.'+res[0].price+'</label>'
 		 	let ram = document.querySelector('#ramm4');
 		 	ram.innerHTML='<label>'+res[0].ram+' GB</label>'
 		 	let internalStorage = document.querySelector('#ism4');

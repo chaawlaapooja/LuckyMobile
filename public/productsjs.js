@@ -192,9 +192,7 @@ function deleteListItem(e) {
 	
 	//let p =[];
 	filterButton.addEventListener("click", function(){
-		if(res==='error')
-		 		window.alert('Some error occured while performing request. Please try again later')
-		 	var g = document.querySelectorAll('.shopList1 > li');
+		var g = document.querySelectorAll('.shopList1 > li');
 		g.forEach(function(g){
 				deleteListItem(g);
 		})
@@ -217,6 +215,9 @@ function deleteListItem(e) {
 		 })
 		 .then(res => res.json())
 		 .then(res => {
+		 	if(res==='error')
+		 		window.alert('Some error occured while performing request. Please try again later')
+		 
 		 	let toBeChange = document.querySelector('.w3ls_mobiles_grid_right_grid3')
 		 	let html_str = '';
 			for(let p of res) {
