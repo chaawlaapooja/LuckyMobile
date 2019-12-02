@@ -23,6 +23,7 @@ const onlineOrder = require('./database/models/onlineOrders');
 const storeProduct = require('./database/models/storeProduct')
 const section = require('./database/models/section')
 const paymentMode = require('./database/models/paymentMode')
+const feedback = require('./database/models/feedback');
 
 const aboutPage = require('./controllers/aboutPage');
 const addBrand = require('./controllers/addBrand');
@@ -240,6 +241,28 @@ app.post('/addProduct', addProduct);
 app.get('/removeProduct/:id', removeProduct);
 app.get('/removeBrand/:id', removeBrand);
 app.get('/removeOffer/:id', removeOffer);
+app.get('/saveData/:productID/:value', (req,res)=>{
+  //console.log(req.params)
+  feedback.find({productID:req.params.productID}).exec((err,p)=>{
+    if(p.length===0){
+      feedback.create({productID:req.params.productID, records: [{value: req.params.value }] }, (error,result)=>{
+        console.log(error, result)
+      })
+    }
+    else if(p.length===1){
+      feedback.update(
+    { productID: req.params.productID }, 
+    { $push: { records: {value:req.params.value} } }, (e,r)=>{
+      console.log(e,r)
+    }
+);
+    }
+  })
+  
+  
+  res.redirect('/')
+})
+
 app.get('/error', error)
 app.get('/adminPanel', adminPanel);
 app.get('/removeSection/:id', removeSection);
